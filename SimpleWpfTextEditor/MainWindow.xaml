@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top" Background="#EEE">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open"/>
+                <MenuItem Header="_Close"/>
+                <MenuItem Header="_Save"/>
+            </MenuItem>
+        </Menu>
+        <TextBox TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" >
+        </TextBox>
+    </DockPanel>
 </Window>
