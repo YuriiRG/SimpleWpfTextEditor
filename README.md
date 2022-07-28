@@ -1,3 +1,3 @@
 # SimpleWpfTextEditor
 
-Simple WPF Text editor like notepad 
+Simple WPF text editor like notepad.
