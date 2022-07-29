@@ -20,9 +20,22 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TextBoxData mainTextBoxData = new();
         public MainWindow()
         {
             InitializeComponent();
+            Binding textBoxBinding = new()
+            {
+                Source = mainTextBoxData,
+                Path = new PropertyPath("Text"),
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            MainTextBox.SetBinding(TextBox.TextProperty, textBoxBinding);
+        }
+
+        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        {
+            mainTextBoxData.Text = "Let's pretend that it's a file content";
         }
     }
 }

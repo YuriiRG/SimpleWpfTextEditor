@@ -9,12 +9,11 @@
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">
             <MenuItem Header="_File">
-                <MenuItem Header="_Open"/>
-                <MenuItem Header="_Close"/>
+                <MenuItem Name="MenuItemOpen" Header="_Open" Click="MenuItemOpen_Click"/>
                 <MenuItem Header="_Save"/>
             </MenuItem>
         </Menu>
-        <TextBox TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" >
+        <TextBox Name="MainTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True">
         </TextBox>
     </DockPanel>
 </Window>
