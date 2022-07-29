@@ -22,17 +22,11 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ApplicationData applicationData = new();
+        private readonly ApplicationData applicationData;
         public MainWindow()
         {
             InitializeComponent();
-            Binding textBoxBinding = new()
-            {
-                Source = applicationData,
-                Path = new PropertyPath("Text"),
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
-            MainTextBox.SetBinding(TextBox.TextProperty, textBoxBinding);
+            applicationData = (ApplicationData)DataContext;
         }
 
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
@@ -46,21 +40,22 @@ namespace SimpleWpfTextEditor
             {
                 applicationData.CurrentFilePath = openFileDialog.FileName;
                 applicationData.Text = File.ReadAllText(openFileDialog.FileName);
-                this.Title = applicationData.CurrentFilePath;
+                applicationData.WindowTitle = applicationData.CurrentFilePath;
             }
         }
 
         private void MenuItemSave_Click(object sender, RoutedEventArgs e)
         {
             File.WriteAllText(applicationData.CurrentFilePath, applicationData.Text);
-            this.Title = applicationData.CurrentFilePath;
+            applicationData.WindowTitle = applicationData.CurrentFilePath;
         }
 
         private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!this.Title.EndsWith('*') && applicationData.CurrentFilePath != String.Empty)
+            if (!applicationData.WindowTitle.EndsWith('*') &&
+                applicationData.CurrentFilePath != String.Empty)
             {
-                Title += "*";
+                applicationData.WindowTitle += "*";
             }
         }
     }

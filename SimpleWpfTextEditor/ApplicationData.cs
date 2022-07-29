@@ -24,6 +24,20 @@ namespace SimpleWpfTextEditor
             }
         }
 
+        private string windowTitle = "No file opened";
+        public string WindowTitle
+        {
+            get
+            {
+                return windowTitle;
+            }
+            set
+            {
+                windowTitle = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string CurrentFilePath { get; set; } = String.Empty;
 
         public event PropertyChangedEventHandler? PropertyChanged;
