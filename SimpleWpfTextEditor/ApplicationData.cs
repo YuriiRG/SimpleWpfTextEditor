@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace SimpleWpfTextEditor
 {
-    class TextBoxData : INotifyPropertyChanged
+    class ApplicationData : INotifyPropertyChanged
     {
         private string text = String.Empty;
         public string Text
@@ -23,6 +23,9 @@ namespace SimpleWpfTextEditor
                 OnPropertyChanged();
             }
         }
+
+        public string CurrentFilePath { get; set; } = String.Empty;
+
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

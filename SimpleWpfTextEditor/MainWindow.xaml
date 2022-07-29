@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="No file opened" Height="450" Width="800">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">
             <MenuItem Header="_File">
                 <MenuItem Name="MenuItemOpen" Header="_Open" Click="MenuItemOpen_Click"/>
-                <MenuItem Header="_Save"/>
+                <MenuItem Name="MenuItemSave" Header="_Save" Click="MenuItemSave_Click"/>
+                <MenuItem Name="MenuItemSaveAs" Header="Save _As"/>
             </MenuItem>
         </Menu>
-        <TextBox Name="MainTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True">
+        <TextBox Name="MainTextBox" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" TextChanged="MainTextBox_TextChanged">
         </TextBox>
     </DockPanel>
 </Window>
