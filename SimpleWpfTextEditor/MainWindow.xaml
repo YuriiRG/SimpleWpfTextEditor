@@ -9,7 +9,6 @@
         DataContext="{DynamicResource ApplicationDataInstance}">
     <Window.Resources>
         <local:ApplicationData x:Key="ApplicationDataInstance"/>
-        
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">
@@ -19,16 +18,12 @@
                 <MenuItem Name="MenuItemSaveAs" Header="Save _As"/>
             </MenuItem>
         </Menu>
-        <TextBox TextChanged="MainTextBox_TextChanged">
-            <TextBox.Name>MainTextBox</TextBox.Name>
-            <TextBox.Text>
-                <Binding Path="Text" UpdateSourceTrigger="PropertyChanged"/>
-            </TextBox.Text>
-            <TextBox.TextWrapping>
-                <TextWrapping>Wrap</TextWrapping>
-            </TextBox.TextWrapping>
-            <TextBox.AcceptsReturn>True</TextBox.AcceptsReturn>
-            <TextBox.AcceptsTab>True</TextBox.AcceptsTab>
+        <TextBox Name="MainTextBox"
+                 Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 TextChanged="MainTextBox_TextChanged">
         </TextBox>
     </DockPanel>
 </Window>
