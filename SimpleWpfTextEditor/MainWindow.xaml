@@ -16,7 +16,13 @@
         <CommandBinding Command="ApplicationCommands.Save"
                         Executed="SaveFile"
                         CanExecute="IsFileOpened"/>
+        <CommandBinding Command="ApplicationCommands.SaveAs"
+                        Executed="SaveFileAs"/>
     </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="ApplicationCommands.SaveAs"
+                    Gesture="Ctrl+Shift+S"/>
+    </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">
             <MenuItem Header="_File">
@@ -28,7 +34,8 @@
                           Command="ApplicationCommands.Save"/>
                 <MenuItem Name="MenuItemSaveAs"
                           Header="Save _As"
-                          Command="ApplicationCommands.SaveAs"/>
+                          Command="ApplicationCommands.SaveAs"
+                          InputGestureText="Ctrl+Shift+S"/>
             </MenuItem>
         </Menu>
         <TextBox Name="MainTextBox"

@@ -29,15 +29,6 @@ namespace SimpleWpfTextEditor
             Data = (ApplicationData)DataContext;
         }
 
-        private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!Data.WindowTitle.EndsWith('*') &&
-                Data.CurrentFilePath != String.Empty)
-            {
-                Data.WindowTitle += "*";
-            }
-        }
-
         private void OpenFile(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new()
@@ -59,9 +50,32 @@ namespace SimpleWpfTextEditor
             Data.WindowTitle = Data.CurrentFilePath;
         }
 
+        private void SaveFileAs(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new()
+            {
+                Filter = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*"
+            };
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                Data.CurrentFilePath = saveFileDialog.FileName;
+                File.WriteAllText(Data.CurrentFilePath, Data.Text);
+                Data.WindowTitle = Data.CurrentFilePath;
+            }
+        }
+
         private void IsFileOpened(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = (Data.CurrentFilePath != String.Empty);
+        }
+
+        private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!Data.WindowTitle.EndsWith('*') &&
+                Data.CurrentFilePath != String.Empty)
+            {
+                Data.WindowTitle += "*";
+            }
         }
     }
 }
