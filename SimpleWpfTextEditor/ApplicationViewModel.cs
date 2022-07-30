@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace SimpleWpfTextEditor
 {
-    public class ApplicationData : INotifyPropertyChanged
+    public class ApplicationViewModel : INotifyPropertyChanged
     {
         private string text = String.Empty;
         public string Text

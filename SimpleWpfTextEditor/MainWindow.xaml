@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="450" Width="800"
-        DataContext="{DynamicResource ApplicationDataInstance}">
+        DataContext="{DynamicResource ApplicationViewModelInstance}">
     <Window.Resources>
-        <local:ApplicationData x:Key="ApplicationDataInstance"/>
+        <local:ApplicationViewModel x:Key="ApplicationViewModelInstance"/>
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">

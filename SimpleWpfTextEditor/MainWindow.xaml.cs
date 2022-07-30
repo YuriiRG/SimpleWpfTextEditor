@@ -22,11 +22,11 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ApplicationData applicationData;
+        private readonly ApplicationViewModel applicationData;
         public MainWindow()
         {
             InitializeComponent();
-            applicationData = (ApplicationData)DataContext;
+            applicationData = (ApplicationViewModel)DataContext;
         }
 
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
