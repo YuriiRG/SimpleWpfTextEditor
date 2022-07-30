@@ -22,6 +22,7 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string PlainTextFilterString = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*";
         private readonly ApplicationData Data;
         public MainWindow()
         {
@@ -33,7 +34,7 @@ namespace SimpleWpfTextEditor
         {
             OpenFileDialog openFileDialog = new()
             {
-                Filter = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*"
+                Filter = PlainTextFilterString
             };
 
             if (openFileDialog.ShowDialog() == true)
@@ -54,7 +55,7 @@ namespace SimpleWpfTextEditor
         {
             SaveFileDialog saveFileDialog = new()
             {
-                Filter = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*"
+                Filter = PlainTextFilterString
             };
             if (saveFileDialog.ShowDialog() == true)
             {
