@@ -6,16 +6,29 @@
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="450" Width="800"
-        DataContext="{DynamicResource ApplicationViewModelInstance}">
+        DataContext="{DynamicResource ApplicationDataInstance}">
     <Window.Resources>
-        <local:ApplicationViewModel x:Key="ApplicationViewModelInstance"/>
+        <local:ApplicationData x:Key="ApplicationDataInstance"/>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open"
+                        Executed="OpenFile"/>
+        <CommandBinding Command="ApplicationCommands.Save"
+                        Executed="SaveFile"
+                        CanExecute="IsFileOpened"/>
+    </Window.CommandBindings>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">
             <MenuItem Header="_File">
-                <MenuItem Name="MenuItemOpen" Header="_Open" Click="MenuItemOpen_Click"/>
-                <MenuItem Name="MenuItemSave" Header="_Save" Click="MenuItemSave_Click"/>
-                <MenuItem Name="MenuItemSaveAs" Header="Save _As"/>
+                <MenuItem Name="MenuItemOpen"
+                          Header="_Open"
+                          Command="ApplicationCommands.Open"/>
+                <MenuItem Name="MenuItemSave"
+                          Header="_Save"
+                          Command="ApplicationCommands.Save"/>
+                <MenuItem Name="MenuItemSaveAs"
+                          Header="Save _As"
+                          Command="ApplicationCommands.SaveAs"/>
             </MenuItem>
         </Menu>
         <TextBox Name="MainTextBox"

@@ -22,14 +22,23 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ApplicationViewModel applicationData;
+        private readonly ApplicationData Data;
         public MainWindow()
         {
             InitializeComponent();
-            applicationData = (ApplicationViewModel)DataContext;
+            Data = (ApplicationData)DataContext;
         }
 
-        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!Data.WindowTitle.EndsWith('*') &&
+                Data.CurrentFilePath != String.Empty)
+            {
+                Data.WindowTitle += "*";
+            }
+        }
+
+        private void OpenFile(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new()
             {
@@ -38,25 +47,21 @@ namespace SimpleWpfTextEditor
 
             if (openFileDialog.ShowDialog() == true)
             {
-                applicationData.CurrentFilePath = openFileDialog.FileName;
-                applicationData.Text = File.ReadAllText(openFileDialog.FileName);
-                applicationData.WindowTitle = applicationData.CurrentFilePath;
+                Data.CurrentFilePath = openFileDialog.FileName;
+                Data.Text = File.ReadAllText(openFileDialog.FileName);
+                Data.WindowTitle = Data.CurrentFilePath;
             }
         }
 
-        private void MenuItemSave_Click(object sender, RoutedEventArgs e)
+        private void SaveFile(object sender, ExecutedRoutedEventArgs e)
         {
-            File.WriteAllText(applicationData.CurrentFilePath, applicationData.Text);
-            applicationData.WindowTitle = applicationData.CurrentFilePath;
+            File.WriteAllText(Data.CurrentFilePath, Data.Text);
+            Data.WindowTitle = Data.CurrentFilePath;
         }
 
-        private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void IsFileOpened(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (!applicationData.WindowTitle.EndsWith('*') &&
-                applicationData.CurrentFilePath != String.Empty)
-            {
-                applicationData.WindowTitle += "*";
-            }
+            e.CanExecute = (Data.CurrentFilePath != String.Empty);
         }
     }
 }

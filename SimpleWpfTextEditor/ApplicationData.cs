@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace SimpleWpfTextEditor
 {
-    public class ApplicationViewModel : INotifyPropertyChanged
+    class ApplicationData : INotifyPropertyChanged
     {
         private string text = String.Empty;
         public string Text
@@ -16,8 +16,8 @@ namespace SimpleWpfTextEditor
             get
             {
                 return text;
-            } 
-            set 
+            }
+            set
             {
                 text = value;
                 OnPropertyChanged();
