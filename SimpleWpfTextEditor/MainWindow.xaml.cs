@@ -95,5 +95,10 @@ namespace SimpleWpfTextEditor
                     break;
             }
         }
+
+        private void OpenPreferences(object sender, ExecutedRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

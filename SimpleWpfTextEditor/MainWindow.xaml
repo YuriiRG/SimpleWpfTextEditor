@@ -18,6 +18,8 @@
                         CanExecute="AllowSaving"/>
         <CommandBinding Command="ApplicationCommands.SaveAs"
                         Executed="SaveFileAs"/>
+        <CommandBinding Command="local:CustomCommands.Preferences"
+                        Executed="OpenPreferences"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
@@ -36,6 +38,20 @@
                           Header="Save _As"
                           Command="ApplicationCommands.SaveAs"
                           InputGestureText="Ctrl+Shift+S"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Name="MenuItemCopy"
+                          Header="_Copy"
+                          Command="ApplicationCommands.Copy"/>
+                <MenuItem Name="MenuItemPaste"
+                          Header="_Paste"
+                          Command="ApplicationCommands.Paste"/>
+                <MenuItem Name="MenuItemCut"
+                          Header="C_ut"
+                          Command="ApplicationCommands.Cut"/>
+                <MenuItem Name="Preferences"
+                          Header="P_references"
+                          Command="local:CustomCommands.Preferences"/>
             </MenuItem>
         </Menu>
         <TextBox Name="MainTextBox"
