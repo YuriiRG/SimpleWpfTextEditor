@@ -33,8 +33,11 @@ namespace SimpleWpfTextEditor
             }
             set
             {
-                windowTitle = value;
-                OnPropertyChanged();
+                if (windowTitle != value)
+                {
+                    windowTitle = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

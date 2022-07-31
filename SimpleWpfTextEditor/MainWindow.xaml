@@ -15,7 +15,7 @@
                         Executed="OpenFile"/>
         <CommandBinding Command="ApplicationCommands.Save"
                         Executed="SaveFile"
-                        CanExecute="IsFileOpened"/>
+                        CanExecute="AllowSaving"/>
         <CommandBinding Command="ApplicationCommands.SaveAs"
                         Executed="SaveFileAs"/>
     </Window.CommandBindings>

@@ -22,6 +22,7 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly FileStateFSM fileStateFSM = new();
         private const string PlainTextFilterString = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*";
         private readonly ApplicationData Data;
         public MainWindow()
@@ -41,14 +42,16 @@ namespace SimpleWpfTextEditor
             {
                 Data.CurrentFilePath = openFileDialog.FileName;
                 Data.Text = File.ReadAllText(openFileDialog.FileName);
-                Data.WindowTitle = Data.CurrentFilePath;
+                fileStateFSM.EventHappened(FileEvents.FileOpened);
+                UpdateWindowTitle();
             }
         }
 
         private void SaveFile(object sender, ExecutedRoutedEventArgs e)
         {
             File.WriteAllText(Data.CurrentFilePath, Data.Text);
-            Data.WindowTitle = Data.CurrentFilePath;
+            fileStateFSM.EventHappened(FileEvents.FileSaved);
+            UpdateWindowTitle();
         }
 
         private void SaveFileAs(object sender, ExecutedRoutedEventArgs e)
@@ -61,21 +64,35 @@ namespace SimpleWpfTextEditor
             {
                 Data.CurrentFilePath = saveFileDialog.FileName;
                 File.WriteAllText(Data.CurrentFilePath, Data.Text);
-                Data.WindowTitle = Data.CurrentFilePath;
+                fileStateFSM.EventHappened(FileEvents.FileSaved);
+                UpdateWindowTitle();
             }
         }
 
-        private void IsFileOpened(object sender, CanExecuteRoutedEventArgs e)
+        private void AllowSaving(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = (Data.CurrentFilePath != String.Empty);
+            e.CanExecute = (fileStateFSM.State != FileStates.NoFile);
         }
 
         private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!Data.WindowTitle.EndsWith('*') &&
-                Data.CurrentFilePath != String.Empty)
+            fileStateFSM.EventHappened(FileEvents.FileChanged);
+            UpdateWindowTitle();
+        }
+
+        private void UpdateWindowTitle()
+        {
+            switch (fileStateFSM.State)
             {
-                Data.WindowTitle += "*";
+                case FileStates.NoFile:
+                    Data.WindowTitle = "No file opened";
+                    break;
+                case FileStates.FileNoChanges:
+                    Data.WindowTitle = Data.CurrentFilePath;
+                    break;
+                case FileStates.ChangedFile:
+                    Data.WindowTitle = Data.CurrentFilePath + "*";
+                    break;
             }
         }
     }

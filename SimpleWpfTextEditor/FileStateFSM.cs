@@ -13,12 +13,12 @@ namespace SimpleWpfTextEditor
     {
         public FileStates State { get; private set; } = FileStates.NoFile;
 
-        private readonly FileStates[,] fsm = new FileStates[3, 2]
+        private readonly FileStates[,] fsm = new FileStates[3, 3]
         {
-            // FileOpened,             FileChanged
-            {FileStates.FileNoChanges, FileStates.NoFile},      // NoFile
-            {FileStates.FileNoChanges, FileStates.ChangedFile}, // FileNoChanges
-            {FileStates.FileNoChanges, FileStates.ChangedFile}  // ChangedFile
+            // FileOpened,             FileChanged             FileSaved  
+            {FileStates.FileNoChanges, FileStates.NoFile,      FileStates.NoFile},        // NoFile
+            {FileStates.FileNoChanges, FileStates.ChangedFile, FileStates.FileNoChanges}, // FileNoChanges
+            {FileStates.FileNoChanges, FileStates.ChangedFile, FileStates.FileNoChanges}  // ChangedFile
         };
 
         public void EventHappened(FileEvents newEvent)
@@ -35,6 +35,7 @@ namespace SimpleWpfTextEditor
     enum FileEvents
     {
         FileOpened,
-        FileChanged
+        FileChanged,
+        FileSaved
     }
 }
