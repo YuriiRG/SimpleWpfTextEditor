@@ -47,19 +47,19 @@ namespace SimpleWpfTextEditor
         [JsonIgnore]
         public string CurrentFilePath { get; set; } = String.Empty;
 
-        private bool warpText = true;
+        private bool wrapText = true;
         
-        public bool WarpText
+        public bool WrapText
         {
             get
             {
-                return warpText;
+                return wrapText;
             }
             set
             {
-                if (value != warpText)
+                if (value != wrapText)
                 {
-                    warpText = value;
+                    wrapText = value;
                     SettingsWriter.Save(this);
                     OnPropertyChanged();
                 }

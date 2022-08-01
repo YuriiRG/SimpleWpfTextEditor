@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="450" Width="800">
+    <Window.Resources>
+        <local:BoolWarpEnumConverter x:Key="boolWarpEnumConverter"/>
+    </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open"
                         Executed="OpenFile"/>
@@ -48,14 +51,15 @@
                 <MenuItem Name="MenuItemWarpText"
                           Header="_Warp text"
                           IsCheckable="True"
-                          IsChecked="{Binding WarpText}"/>
+                          IsChecked="{Binding WrapText, UpdateSourceTrigger=PropertyChanged}"/>
             </MenuItem>
         </Menu>
         <TextBox Name="MainTextBox"
                  Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
-                 TextWrapping="Wrap"
+                 TextWrapping="{Binding WrapText, Converter={StaticResource boolWarpEnumConverter}}"
                  AcceptsReturn="True"
                  AcceptsTab="True"
+                 HorizontalScrollBarVisibility="Visible"
                  TextChanged="MainTextBox_TextChanged">
         </TextBox>
     </DockPanel>
