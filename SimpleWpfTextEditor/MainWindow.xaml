@@ -48,8 +48,8 @@
                 <MenuItem Name="MenuItemCut"
                           Header="C_ut"
                           Command="ApplicationCommands.Cut"/>
-                <MenuItem Name="MenuItemWarpText"
-                          Header="_Warp text"
+                <MenuItem Name="MenuItemWrapText"
+                          Header="_Wrap text"
                           IsCheckable="True"
                           IsChecked="{Binding WrapText, UpdateSourceTrigger=PropertyChanged}"/>
             </MenuItem>

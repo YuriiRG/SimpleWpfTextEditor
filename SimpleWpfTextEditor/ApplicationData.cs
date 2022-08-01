@@ -60,8 +60,8 @@ namespace SimpleWpfTextEditor
                 if (value != wrapText)
                 {
                     wrapText = value;
-                    SettingsWriter.Save(this);
                     OnPropertyChanged();
+                    SettingsWriter.Save(this);
                 }
             }
         }
