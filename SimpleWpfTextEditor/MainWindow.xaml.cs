@@ -97,7 +97,7 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        private void OpenPreferences(object sender, ExecutedRoutedEventArgs e)
+        private void OpenChangeFontDialog(object sender, ExecutedRoutedEventArgs e)
         {
             throw new NotImplementedException();
         }

@@ -17,8 +17,8 @@
                         CanExecute="AllowSaving"/>
         <CommandBinding Command="ApplicationCommands.SaveAs"
                         Executed="SaveFileAs"/>
-        <CommandBinding Command="local:CustomCommands.Preferences"
-                        Executed="OpenPreferences"/>
+        <CommandBinding Command="local:CustomCommands.ChangeFont"
+                        Executed="OpenChangeFontDialog"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
@@ -48,6 +48,11 @@
                 <MenuItem Name="MenuItemCut"
                           Header="C_ut"
                           Command="ApplicationCommands.Cut"/>
+            </MenuItem>
+            <MenuItem Header="_Preferences">
+                <MenuItem Name="MenuItemChangeFont"
+                          Header="Change _font"
+                          Command="local:CustomCommands.ChangeFont"/>
                 <MenuItem Name="MenuItemWrapText"
                           Header="_Wrap text"
                           IsCheckable="True"
