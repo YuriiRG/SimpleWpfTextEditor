@@ -5,11 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle}" Height="450" Width="800"
-        DataContext="{DynamicResource ApplicationDataInstance}">
-    <Window.Resources>
-        <local:ApplicationData x:Key="ApplicationDataInstance"/>
-    </Window.Resources>
+        Title="{Binding WindowTitle}" Height="450" Width="800">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open"
                         Executed="OpenFile"/>
@@ -49,9 +45,10 @@
                 <MenuItem Name="MenuItemCut"
                           Header="C_ut"
                           Command="ApplicationCommands.Cut"/>
-                <MenuItem Name="Preferences"
-                          Header="P_references"
-                          Command="local:CustomCommands.Preferences"/>
+                <MenuItem Name="MenuItemWarpText"
+                          Header="_Warp text"
+                          IsCheckable="True"
+                          IsChecked="{Binding WarpText}"/>
             </MenuItem>
         </Menu>
         <TextBox Name="MainTextBox"

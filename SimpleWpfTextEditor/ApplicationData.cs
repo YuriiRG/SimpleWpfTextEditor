@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using System.Text.Json.Serialization;
 namespace SimpleWpfTextEditor
 {
-    class ApplicationData : INotifyPropertyChanged
+    public class ApplicationData : INotifyPropertyChanged
     {
+        // Put JsonIgnore attribute on public properties that should not be saved in settings.json
         private string text = String.Empty;
+        [JsonIgnore]
         public string Text
         {
             get
@@ -25,6 +27,7 @@ namespace SimpleWpfTextEditor
         }
 
         private string windowTitle = "No file opened";
+        [JsonIgnore]
         public string WindowTitle
         {
             get
@@ -41,7 +44,27 @@ namespace SimpleWpfTextEditor
             }
         }
 
+        [JsonIgnore]
         public string CurrentFilePath { get; set; } = String.Empty;
+
+        private bool warpText = true;
+        
+        public bool WarpText
+        {
+            get
+            {
+                return warpText;
+            }
+            set
+            {
+                if (value != warpText)
+                {
+                    warpText = value;
+                    SettingsWriter.Save(this);
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

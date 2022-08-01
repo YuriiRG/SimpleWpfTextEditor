@@ -27,8 +27,9 @@ namespace SimpleWpfTextEditor
         private readonly ApplicationData Data;
         public MainWindow()
         {
+            Data = SettingsWriter.Read();
             InitializeComponent();
-            Data = (ApplicationData)DataContext;
+            DataContext = Data;
         }
 
         private void OpenFile(object sender, ExecutedRoutedEventArgs e)
