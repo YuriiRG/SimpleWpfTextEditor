@@ -9,7 +9,7 @@ namespace SimpleWpfTextEditor
 {
     class CustomCommands
     {
-        public static RoutedCommand Preferences { get; set; } =
-            new RoutedCommand("Preferences", typeof(MainWindow));
+        public static RoutedCommand ChangeFont { get; set; } =
+            new RoutedCommand("ChangeFont", typeof(MainWindow));
     }
 }
