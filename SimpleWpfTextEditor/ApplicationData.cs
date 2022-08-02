@@ -48,7 +48,6 @@ namespace SimpleWpfTextEditor
         public string CurrentFilePath { get; set; } = String.Empty;
 
         private bool wrapText = true;
-        
         public bool WrapText
         {
             get
@@ -60,6 +59,24 @@ namespace SimpleWpfTextEditor
                 if (value != wrapText)
                 {
                     wrapText = value;
+                    OnPropertyChanged();
+                    SettingsWriter.Save(this);
+                }
+            }
+        }
+
+        private double fontSize = 14;
+        public double FontSize
+        {
+            get
+            {
+                return fontSize;
+            }
+            set
+            {
+                if (value != fontSize)
+                {
+                    fontSize = value;
                     OnPropertyChanged();
                     SettingsWriter.Save(this);
                 }

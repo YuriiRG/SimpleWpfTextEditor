@@ -19,9 +19,34 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class FontDialog : Window
     {
-        public FontDialog()
+        private ApplicationData Data;
+        public FontDialog(ApplicationData data)
         {
+            Data = data;
             InitializeComponent();
+            FontSizeTextBox.Text = Convert.ToString(Data.FontSize);
+        }
+
+        private void SaveAndClose(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Data.FontSize = Convert.ToDouble(FontSizeTextBox.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid data entered",
+                                "Error",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                return;
+            }
+            Close();
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

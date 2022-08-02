@@ -65,7 +65,8 @@
                  AcceptsReturn="True"
                  AcceptsTab="True"
                  HorizontalScrollBarVisibility="Visible"
-                 TextChanged="MainTextBox_TextChanged">
+                 TextChanged="MainTextBox_TextChanged"
+                 FontSize="{Binding FontSize}">
         </TextBox>
     </DockPanel>
 </Window>

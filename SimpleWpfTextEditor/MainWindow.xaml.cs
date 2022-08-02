@@ -99,7 +99,8 @@ namespace SimpleWpfTextEditor
 
         private void OpenChangeFontDialog(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            FontDialog dialog = new(Data);
+            dialog.Show();
         }
     }
 }
