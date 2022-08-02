@@ -102,5 +102,17 @@ namespace SimpleWpfTextEditor
             FontDialog dialog = new(Data);
             dialog.Show();
         }
+
+        private void ChangeFontSizeWithMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (Keyboard.Modifiers != ModifierKeys.Control)
+                return;
+
+            if (e.Delta > 0)
+                Data.FontSize++;
+
+            else if (e.Delta < 0)
+                Data.FontSize--;
+        }
     }
 }
