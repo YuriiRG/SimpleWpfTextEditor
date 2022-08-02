@@ -66,7 +66,8 @@
                  AcceptsTab="True"
                  HorizontalScrollBarVisibility="Visible"
                  TextChanged="MainTextBox_TextChanged"
-                 FontSize="{Binding FontSize}">
+                 FontSize="{Binding FontSize}"
+                 FontFamily="{Binding FontFamily}">
         </TextBox>
     </DockPanel>
 </Window>

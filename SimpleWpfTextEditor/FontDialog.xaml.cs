@@ -24,7 +24,23 @@ namespace SimpleWpfTextEditor
         {
             Data = data;
             InitializeComponent();
+            FillFontFamilyComboBox();
+            InitializeData();
+        }
+
+        private void InitializeData()
+        {
             FontSizeTextBox.Text = Convert.ToString(Data.FontSize);
+        }
+
+        private void FillFontFamilyComboBox()
+        {
+            foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
+            {
+                FontFamilyComboBox.Items.Add(fontFamily.Source);
+            }
+
+            FontFamilyComboBox.SelectedItem = Data.FontFamily;
         }
 
         private void SaveAndClose(object sender, RoutedEventArgs e)
@@ -32,6 +48,7 @@ namespace SimpleWpfTextEditor
             try
             {
                 Data.FontSize = Convert.ToDouble(FontSizeTextBox.Text);
+                Data.FontFamily = (string)FontFamilyComboBox.SelectedItem;
             }
             catch
             {

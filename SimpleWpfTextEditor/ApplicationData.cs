@@ -83,6 +83,24 @@ namespace SimpleWpfTextEditor
             }
         }
 
+        private string fontFamily = "Segoe UI";
+        public string FontFamily
+        {
+            get
+            {
+                return fontFamily;
+            }
+            set
+            {
+                if (value != fontFamily)
+                {
+                    fontFamily = value;
+                    OnPropertyChanged();
+                    SettingsWriter.Save(this);
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

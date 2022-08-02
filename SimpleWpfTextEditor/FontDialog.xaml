@@ -22,7 +22,7 @@
         <TextBlock Text="Font family:"
                    Margin="6,0,0,0"
                    VerticalAlignment="Center" Height="16" Grid.Row="0"/>
-        <ComboBox Grid.Row="1" Margin="3"/>
+        <ComboBox Grid.Row="1" Margin="3" Name="FontFamilyComboBox"/>
         <TextBlock Text="Font size:" Grid.Row="2"
                    VerticalAlignment="Center"
                    Margin="6,0,0,0"/>
