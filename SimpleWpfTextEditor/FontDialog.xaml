@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
-        Title="Choose font" Height="200" Width="130">
+        Title="Choose font" Height="200" Width="300" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,15 +15,19 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Font family:" Grid.Row="0"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Font family:"
                    Margin="6,0,0,0"
-                   VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1"/>
+                   VerticalAlignment="Center" Height="16" Grid.Row="0"/>
+        <ComboBox Grid.Row="1" Margin="3"/>
         <TextBlock Text="Font size:" Grid.Row="2"
-                   Margin="6,0,0,0"
-                   VerticalAlignment="Center"/>
-        <TextBox Name="FontSizeTextBox" Grid.Row="3"/>
-        <Button Content="Save" Grid.Row="4" Click="SaveAndClose"/>
-        <Button Content="Cancel" Grid.Row="5" Click="Close"/>
+                   VerticalAlignment="Center"
+                   Margin="6,0,0,0"/>
+        <TextBox Name="FontSizeTextBox" Grid.Row="3" Margin="3"/>
+        <Button Content="Save" Grid.Row="4" Margin="3" Click="SaveAndClose"/>
+        <Button Content="Cancel" Grid.Row="5" Click="Close" Margin="3"/>
     </Grid>
 </Window>
