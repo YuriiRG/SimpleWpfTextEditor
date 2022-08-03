@@ -15,5 +15,7 @@ namespace SimpleWpfTextEditor
             new RoutedCommand("ReloadFile", typeof(MainWindow));
         public static RoutedCommand Quit { get; set; } =
             new RoutedCommand("Quit", typeof(MainWindow));
+        public static RoutedCommand OpenRecentFile { get; set; } =
+            new RoutedCommand("OpenRecentFile", typeof(MainWindow));
     }
 }

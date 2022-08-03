@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
+using System.Collections.ObjectModel;
+
 namespace SimpleWpfTextEditor
 {
     public class ApplicationData : INotifyPropertyChanged
     {
+
         // Put JsonIgnore attribute on public properties that should not be saved in settings.json
         private string text = String.Empty;
         [JsonIgnore]
@@ -100,6 +103,27 @@ namespace SimpleWpfTextEditor
                 }
             }
         }
+
+        private bool isRecentFilesEmpty = true;
+        [JsonIgnore]
+        public bool IsRecentFilesNotEmpty
+        {
+            get
+            {
+                return isRecentFilesEmpty;
+            }
+            set
+            {
+                if (value != isRecentFilesEmpty)
+                {
+                    isRecentFilesEmpty = value;
+                    OnPropertyChanged();
+                    SettingsWriter.Save(this);
+                }
+            }
+        }
+
+        public ObservableCollection<string> RecentFiles { get; set; } = new();
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

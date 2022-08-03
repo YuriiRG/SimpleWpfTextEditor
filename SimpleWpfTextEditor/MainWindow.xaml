@@ -25,6 +25,9 @@
                         CanExecute="IsAnyFileOpened"/>
         <CommandBinding Command="local:CustomCommands.Quit"
                         Executed="QuitApp"/>
+        <CommandBinding Command="local:CustomCommands.OpenRecentFile"
+                        Executed="OpenRecentFile"/>
+
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
@@ -50,6 +53,22 @@
                           Header="Reload current file"
                           Command="local:CustomCommands.ReloadFile"
                           InputGestureText="F5"/>
+                <MenuItem Header="Recent files"
+                          ItemsSource="{Binding RecentFiles}"
+                          IsEnabled="{Binding IsRecentFilesNotEmpty}">
+                    <MenuItem.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="MenuItem.Header"
+                                    Value="{Binding}"/>
+                            <Setter Property="MenuItem.Command"
+                                    Value="local:CustomCommands.OpenRecentFile"/>
+                            <Setter Property="MenuItem.CommandParameter"
+                                    Value="{Binding}"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+
+
                 <Separator/>
                 <MenuItem Name="MenuItemQuit"
                           Header="Quit"

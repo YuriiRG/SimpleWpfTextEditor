@@ -30,6 +30,7 @@ namespace SimpleWpfTextEditor
             Data = SettingsWriter.Read();
             InitializeComponent();
             DataContext = Data;
+            UpdateRecentFiles();
         }
 
         private void OpenFile(object sender, ExecutedRoutedEventArgs e)
@@ -45,6 +46,7 @@ namespace SimpleWpfTextEditor
                 Data.Text = File.ReadAllText(openFileDialog.FileName);
                 fileStateFSM.EventHappened(FileEvents.FileOpened);
                 UpdateWindowTitle();
+                UpdateRecentFiles(Data.CurrentFilePath);
             }
         }
 
@@ -117,7 +119,7 @@ namespace SimpleWpfTextEditor
 
         private void ReloadCurrentFile(object sender, ExecutedRoutedEventArgs e)
         {
-            if (fileStateFSM.State == FileStates.ChangedFile)
+            if (fileStateFSM.State == FileStates.ChangedFile) // TODO: separate to another function
             {
                 string unsavedFileMessage =
                     "Unsaved changes will be lost. Are you sure you want to reload the current file?";
@@ -138,6 +140,29 @@ namespace SimpleWpfTextEditor
         private void QuitApp(object sender, ExecutedRoutedEventArgs e)
         {
             Close();
+        }
+
+        private void OpenRecentFile(object sender, ExecutedRoutedEventArgs e)
+        {
+            Data.CurrentFilePath = (string)e.Parameter;
+            Data.Text = File.ReadAllText(Data.CurrentFilePath);
+            fileStateFSM.EventHappened(FileEvents.FileOpened);
+            UpdateWindowTitle();
+            UpdateRecentFiles(Data.CurrentFilePath);
+        }
+
+        private void UpdateRecentFiles(string? newFilePath = null)
+        {
+            if (newFilePath != null)
+            {
+                Data.RecentFiles.Insert(0, newFilePath!);
+                if (Data.RecentFiles.Count > 10)
+                {
+                    Data.RecentFiles.RemoveAt(Data.RecentFiles.Count - 1);
+                }
+                SettingsWriter.Save(Data);
+            }
+            Data.IsRecentFilesNotEmpty = !(Data.RecentFiles.Count == 0);
         }
     }
 }
