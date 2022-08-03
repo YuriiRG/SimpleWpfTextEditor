@@ -16,18 +16,44 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
+        
         <TextBlock Text="Font family:"
+                   Grid.Row="0"
+                   Grid.Column="1"
                    Margin="6,0,0,0"
-                   VerticalAlignment="Center" Height="16" Grid.Row="0"/>
-        <ComboBox Grid.Row="1" Margin="3" Name="FontFamilyComboBox"/>
-        <TextBlock Text="Font size:" Grid.Row="2"
+                   VerticalAlignment="Center"
+                   Height="16"/>
+        
+        <ComboBox Name="FontFamilyComboBox"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="3" />
+        
+        <TextBlock Text="Font size:"
+                   Grid.Row="2"
+                   Grid.Column="1"
                    VerticalAlignment="Center"
                    Margin="6,0,0,0"/>
-        <TextBox Name="FontSizeTextBox" Grid.Row="3" Margin="3"/>
-        <Button Content="Save" Grid.Row="4" Margin="3" Click="SaveAndClose"/>
-        <Button Content="Cancel" Grid.Row="5" Click="Close" Margin="3"/>
+        
+        <TextBox Name="FontSizeTextBox"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="3"/>
+        
+        <Button Content="Save"
+                Grid.Row="4"
+                Grid.Column="1"
+                Margin="3"
+                Click="SaveAndClose"/>
+        
+        <Button Content="Cancel"
+                Grid.Row="5"
+                Grid.Column="1"
+                Click="Close"
+                Margin="3"/>
     </Grid>
 </Window>
