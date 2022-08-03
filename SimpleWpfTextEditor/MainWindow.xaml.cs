@@ -134,5 +134,10 @@ namespace SimpleWpfTextEditor
             fileStateFSM.EventHappened(FileEvents.FileOpened);
             UpdateWindowTitle();
         }
+
+        private void QuitApp(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

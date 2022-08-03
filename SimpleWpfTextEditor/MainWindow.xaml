@@ -23,6 +23,8 @@
         <CommandBinding Command="local:CustomCommands.ReloadFile"
                         Executed="ReloadCurrentFile"
                         CanExecute="IsAnyFileOpened"/>
+        <CommandBinding Command="local:CustomCommands.Quit"
+                        Executed="QuitApp"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
@@ -43,10 +45,16 @@
                           Header="Save _As"
                           Command="ApplicationCommands.SaveAs"
                           InputGestureText="Ctrl+Shift+S"/>
+                <Separator/>
                 <MenuItem Name="MenuItemReloadCurrentFile"
                           Header="Reload current file"
                           Command="local:CustomCommands.ReloadFile"
                           InputGestureText="F5"/>
+                <Separator/>
+                <MenuItem Name="MenuItemQuit"
+                          Header="Quit"
+                          Command="local:CustomCommands.Quit"
+                          InputGestureText="Alt+F4"/>
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Name="MenuItemCopy"
