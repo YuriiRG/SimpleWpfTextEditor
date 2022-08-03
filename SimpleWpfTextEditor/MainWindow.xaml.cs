@@ -70,7 +70,7 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        private void AllowSaving(object sender, CanExecuteRoutedEventArgs e)
+        private void IsAnyFileOpened(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = (fileStateFSM.State != FileStates.NoFile);
         }
@@ -113,6 +113,26 @@ namespace SimpleWpfTextEditor
 
             else if (e.Delta < 0)
                 Data.FontSize--;
+        }
+
+        private void ReloadCurrentFile(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (fileStateFSM.State == FileStates.ChangedFile)
+            {
+                string unsavedFileMessage =
+                    "Unsaved changes will be lost. Are you sure you want to reload the current file?";
+                var result = MessageBox.Show(unsavedFileMessage,
+                                             "Confirmation",
+                                             MessageBoxButton.YesNo,
+                                             MessageBoxImage.Warning);
+                if (result != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+            }
+            Data.Text = File.ReadAllText(Data.CurrentFilePath);
+            fileStateFSM.EventHappened(FileEvents.FileOpened);
+            UpdateWindowTitle();
         }
     }
 }

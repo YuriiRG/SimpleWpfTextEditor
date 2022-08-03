@@ -15,15 +15,20 @@
                         Executed="OpenFile"/>
         <CommandBinding Command="ApplicationCommands.Save"
                         Executed="SaveFile"
-                        CanExecute="AllowSaving"/>
+                        CanExecute="IsAnyFileOpened"/>
         <CommandBinding Command="ApplicationCommands.SaveAs"
                         Executed="SaveFileAs"/>
         <CommandBinding Command="local:CustomCommands.ChangeFont"
                         Executed="OpenChangeFontDialog"/>
+        <CommandBinding Command="local:CustomCommands.ReloadFile"
+                        Executed="ReloadCurrentFile"
+                        CanExecute="IsAnyFileOpened"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
                     Gesture="Ctrl+Shift+S"/>
+        <KeyBinding Command="local:CustomCommands.ReloadFile"
+                    Gesture="F5"/>
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">
@@ -38,6 +43,10 @@
                           Header="Save _As"
                           Command="ApplicationCommands.SaveAs"
                           InputGestureText="Ctrl+Shift+S"/>
+                <MenuItem Name="MenuItemReloadCurrentFile"
+                          Header="Reload current file"
+                          Command="local:CustomCommands.ReloadFile"
+                          InputGestureText="F5"/>
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Name="MenuItemCopy"
