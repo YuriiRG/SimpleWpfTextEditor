@@ -123,7 +123,23 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        public ObservableCollection<string> RecentFiles { get; set; } = new();
+        private ObservableCollection<string> recentFiles = new();
+        
+        public ObservableCollection<string> RecentFiles
+        {
+            get
+            {
+                return recentFiles;
+            }
+            set
+            {
+                if (value != recentFiles)
+                {
+                    recentFiles = value;
+                    SettingsWriter.Save(this);
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
