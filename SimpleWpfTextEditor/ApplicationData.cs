@@ -48,6 +48,14 @@ namespace SimpleWpfTextEditor
             SettingsWriter.Save(settings);
         }
 
+        public void RecentFilesClear()
+        {
+            RecentFiles.Clear();
+            OnPropertyChanged("RecentFiles");
+            OnPropertyChanged("IsRecentFilesNotEmpty");
+            SettingsWriter.Save(settings);
+        }
+
         public string FontFamily
         {
             get

@@ -27,7 +27,8 @@
                         Executed="QuitApp"/>
         <CommandBinding Command="local:CustomCommands.OpenRecentFile"
                         Executed="OpenRecentFile"/>
-
+        <CommandBinding Command="local:CustomCommands.ClearRecentFiles"
+                        Executed="ClearRecentFiles"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
@@ -53,6 +54,7 @@
                           Header="Reload current file"
                           Command="local:CustomCommands.ReloadFile"
                           InputGestureText="F5"/>
+                <Separator/>
                 <MenuItem Header="Recent files"
                           ItemsSource="{Binding RecentFiles}"
                           IsEnabled="{Binding IsRecentFilesNotEmpty}">
@@ -67,8 +69,9 @@
                         </Style>
                     </MenuItem.ItemContainerStyle>
                 </MenuItem>
-
-
+                <MenuItem Name="MenuItemClearRecentFile"
+                          Header="Clear recent files"
+                          Command="local:CustomCommands.ClearRecentFiles"/>
                 <Separator/>
                 <MenuItem Name="MenuItemQuit"
                           Header="Quit"

@@ -177,5 +177,10 @@ namespace SimpleWpfTextEditor
                 Data.RecentFilesRemoveAt(Data.RecentFiles.Count - 1);
             }
         }
+
+        private void ClearRecentFiles(object sender, ExecutedRoutedEventArgs e)
+        {
+            Data.RecentFilesClear();
+        }
     }
 }
