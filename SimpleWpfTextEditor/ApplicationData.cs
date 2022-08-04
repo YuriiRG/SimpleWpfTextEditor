@@ -104,19 +104,19 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        private bool isRecentFilesEmpty = true;
+        private bool isRecentFilesNotEmpty = false;
         [JsonIgnore]
         public bool IsRecentFilesNotEmpty
         {
             get
             {
-                return isRecentFilesEmpty;
+                return isRecentFilesNotEmpty;
             }
             set
             {
-                if (value != isRecentFilesEmpty)
+                if (value != isRecentFilesNotEmpty)
                 {
-                    isRecentFilesEmpty = value;
+                    isRecentFilesNotEmpty = value;
                     OnPropertyChanged();
                     SettingsWriter.Save(this);
                 }
@@ -136,6 +136,7 @@ namespace SimpleWpfTextEditor
                 if (value != recentFiles)
                 {
                     recentFiles = value;
+                    OnPropertyChanged();
                     SettingsWriter.Save(this);
                 }
             }
