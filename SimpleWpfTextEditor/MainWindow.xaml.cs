@@ -24,13 +24,11 @@ namespace SimpleWpfTextEditor
     {
         private readonly FileStateFSM fileStateFSM = new();
         private const string PlainTextFilterString = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*";
-        private readonly ApplicationData Data;
+        private readonly ApplicationData Data = new();
         public MainWindow()
         {
-            Data = SettingsWriter.Read();
             InitializeComponent();
             DataContext = Data;
-            UpdateRecentFiles();
         }
 
         private void OpenFile(object sender, ExecutedRoutedEventArgs e)
@@ -171,14 +169,12 @@ namespace SimpleWpfTextEditor
         {
             if (newFilePath != null)
             {
-                Data.RecentFiles.Insert(0, newFilePath!);
+                Data.RecentFilesInsert(0, newFilePath!);
                 if (Data.RecentFiles.Count > 10)
                 {
-                    Data.RecentFiles.RemoveAt(Data.RecentFiles.Count - 1);
+                    Data.RecentFilesRemoveAt(Data.RecentFiles.Count - 1);
                 }
-                SettingsWriter.Save(Data);
             }
-            Data.IsRecentFilesNotEmpty = !(Data.RecentFiles.Count == 0);
         }
     }
 }

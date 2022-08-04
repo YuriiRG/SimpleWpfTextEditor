@@ -12,10 +12,97 @@ namespace SimpleWpfTextEditor
 {
     public class ApplicationData : INotifyPropertyChanged
     {
+        private AppSettings settings = SettingsWriter.Read();
 
-        // Put JsonIgnore attribute on public properties that should not be saved in settings.json
+        public ObservableCollection<string> RecentFiles
+        {
+            get
+            {
+                return settings.RecentFiles;
+            }
+            set
+            {
+                if (value != settings.RecentFiles)
+                {
+                    settings.RecentFiles = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged("IsRecentFilesNotEmpty");
+                    SettingsWriter.Save(settings);
+                }
+            }
+        }
+
+        public void RecentFilesInsert(int index, string newRecentFile)
+        {
+            RecentFiles.Insert(index, newRecentFile);
+            OnPropertyChanged("RecentFiles");
+            OnPropertyChanged("IsRecentFilesNotEmpty");
+            SettingsWriter.Save(settings);
+        }
+
+        public void RecentFilesRemoveAt(int index)
+        {
+            RecentFiles.RemoveAt(index);
+            OnPropertyChanged("RecentFiles");
+            OnPropertyChanged("IsRecentFilesNotEmpty");
+            SettingsWriter.Save(settings);
+        }
+
+        public string FontFamily
+        {
+            get
+            {
+                return settings.FontFamily;
+            }
+            set
+            {
+                if (value != settings.FontFamily)
+                {
+                    settings.FontFamily = value;
+                    OnPropertyChanged();
+                    SettingsWriter.Save(settings);
+                }
+            }
+        }
+
+        public double FontSize
+        {
+            get
+            {
+                return settings.FontSize;
+            }
+            set
+            {
+                if (value != settings.FontSize)
+                {
+                    settings.FontSize = value;
+                    OnPropertyChanged();
+                    SettingsWriter.Save(settings);
+                }
+            }
+        }
+
+        public bool WrapText
+        {
+            get
+            {
+                return settings.WrapText;
+            }
+            set
+            {
+                if (value != settings.WrapText)
+                {
+                    settings.WrapText = value;
+                    OnPropertyChanged();
+                    SettingsWriter.Save(settings);
+                }
+            }
+        }
+
+
+        public string CurrentFilePath { get; set; } = String.Empty;
+
         private string text = String.Empty;
-        [JsonIgnore]
         public string Text
         {
             get
@@ -24,13 +111,15 @@ namespace SimpleWpfTextEditor
             }
             set
             {
-                text = value;
-                OnPropertyChanged();
+                if (text != value)
+                {
+                    text = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
         private string windowTitle = "No file opened";
-        [JsonIgnore]
         public string WindowTitle
         {
             get
@@ -47,100 +136,14 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        [JsonIgnore]
-        public string CurrentFilePath { get; set; } = String.Empty;
-
-        private bool wrapText = true;
-        public bool WrapText
-        {
-            get
-            {
-                return wrapText;
-            }
-            set
-            {
-                if (value != wrapText)
-                {
-                    wrapText = value;
-                    OnPropertyChanged();
-                    SettingsWriter.Save(this);
-                }
-            }
-        }
-
-        private double fontSize = 14;
-        public double FontSize
-        {
-            get
-            {
-                return fontSize;
-            }
-            set
-            {
-                if (value != fontSize)
-                {
-                    fontSize = value;
-                    OnPropertyChanged();
-                    SettingsWriter.Save(this);
-                }
-            }
-        }
-
-        private string fontFamily = "Segoe UI";
-        public string FontFamily
-        {
-            get
-            {
-                return fontFamily;
-            }
-            set
-            {
-                if (value != fontFamily)
-                {
-                    fontFamily = value;
-                    OnPropertyChanged();
-                    SettingsWriter.Save(this);
-                }
-            }
-        }
-
-        private bool isRecentFilesNotEmpty = false;
-        [JsonIgnore]
         public bool IsRecentFilesNotEmpty
         {
             get
             {
-                return isRecentFilesNotEmpty;
-            }
-            set
-            {
-                if (value != isRecentFilesNotEmpty)
-                {
-                    isRecentFilesNotEmpty = value;
-                    OnPropertyChanged();
-                    SettingsWriter.Save(this);
-                }
+                return (RecentFiles.Count != 0);
             }
         }
 
-        private ObservableCollection<string> recentFiles = new();
-        
-        public ObservableCollection<string> RecentFiles
-        {
-            get
-            {
-                return recentFiles;
-            }
-            set
-            {
-                if (value != recentFiles)
-                {
-                    recentFiles = value;
-                    OnPropertyChanged();
-                    SettingsWriter.Save(this);
-                }
-            }
-        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
