@@ -165,15 +165,16 @@ namespace SimpleWpfTextEditor
             UpdateRecentFiles(Data.CurrentFilePath);
         }
 
-        private void UpdateRecentFiles(string? newFilePath = null)
+        private void UpdateRecentFiles(string newFilePath)
         {
-            if (newFilePath != null)
+            if (Data.RecentFiles.Contains(newFilePath))
             {
-                Data.RecentFilesInsert(0, newFilePath!);
-                if (Data.RecentFiles.Count > 10)
-                {
-                    Data.RecentFilesRemoveAt(Data.RecentFiles.Count - 1);
-                }
+                Data.RecentFilesRemoveAt(Data.RecentFiles.IndexOf(newFilePath));
+            }
+            Data.RecentFilesInsert(0, newFilePath);
+            if (Data.RecentFiles.Count > 10)
+            {
+                Data.RecentFilesRemoveAt(Data.RecentFiles.Count - 1);
             }
         }
     }
