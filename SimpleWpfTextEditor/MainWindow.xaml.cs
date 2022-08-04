@@ -42,6 +42,10 @@ namespace SimpleWpfTextEditor
 
             if (openFileDialog.ShowDialog() == true)
             {
+                if (!UnsavedFileMessage())
+                {
+                    return;
+                }
                 Data.CurrentFilePath = openFileDialog.FileName;
                 Data.Text = File.ReadAllText(openFileDialog.FileName);
                 fileStateFSM.EventHappened(FileEvents.FileOpened);
@@ -119,22 +123,34 @@ namespace SimpleWpfTextEditor
 
         private void ReloadCurrentFile(object sender, ExecutedRoutedEventArgs e)
         {
-            if (fileStateFSM.State == FileStates.ChangedFile) // TODO: separate to another function
+            if (!UnsavedFileMessage())
             {
-                string unsavedFileMessage =
-                    "Unsaved changes will be lost. Are you sure you want to reload the current file?";
-                var result = MessageBox.Show(unsavedFileMessage,
-                                             "Confirmation",
-                                             MessageBoxButton.YesNo,
-                                             MessageBoxImage.Warning);
-                if (result != MessageBoxResult.Yes)
-                {
-                    return;
-                }
+                return;
             }
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
             fileStateFSM.EventHappened(FileEvents.FileOpened);
             UpdateWindowTitle();
+        }
+
+        private bool UnsavedFileMessage()
+        {
+            if (fileStateFSM.State == FileStates.ChangedFile)
+            {
+                string unsavedFileMessage =
+                    "Unsaved changes will be lost. Are you sure you want to open this file?";
+                var result = MessageBox.Show(unsavedFileMessage,
+                                             "Confirmation",
+                                             MessageBoxButton.YesNo,
+                                             MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void QuitApp(object sender, ExecutedRoutedEventArgs e)
