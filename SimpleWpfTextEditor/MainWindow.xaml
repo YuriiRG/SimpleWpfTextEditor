@@ -107,7 +107,8 @@
                  HorizontalScrollBarVisibility="Visible"
                  TextChanged="MainTextBox_TextChanged"
                  FontSize="{Binding FontSize}"
-                 FontFamily="{Binding FontFamily}">
+                 FontFamily="{Binding FontFamily}"
+                 VerticalScrollBarVisibility="Visible">
         </TextBox>
     </DockPanel>
 </Window>
