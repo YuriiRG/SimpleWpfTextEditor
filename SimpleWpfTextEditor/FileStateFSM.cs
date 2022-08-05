@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleWpfTextEditor
+﻿namespace SimpleWpfTextEditor
 {
     // It's finite-state machine, explanation:
     // https://en.wikipedia.org/wiki/Finite-state_machine
