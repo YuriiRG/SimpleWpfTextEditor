@@ -174,8 +174,23 @@ namespace SimpleWpfTextEditor
 
         private void OpenSearchDialog(object sender, ExecutedRoutedEventArgs e)
         {
-            SearchDialog dialog = new();
+            SearchDialog dialog = new(SelectText, Data);
             dialog.Show();
+        }
+        private void SelectText(int position, int length)
+        {
+            try
+            {
+                MainTextBox.Focus();
+                MainTextBox.Select(position, length);
+            }
+            catch
+            {
+                MessageBox.Show("No occurrences found",
+                                    "Notification",
+                                    MessageBoxButton.OK);
+                return;
+            }
         }
     }
 }

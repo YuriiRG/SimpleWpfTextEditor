@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,8 +20,13 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class SearchDialog : Window
     {
-        public SearchDialog()
+        private SelectTextDelegate SelectTextFunction;
+        private int cursorPosition = 0;
+        private ApplicationData Data;
+        public SearchDialog(SelectTextDelegate selectText, ApplicationData data)
         {
+            SelectTextFunction = selectText;
+            Data = data;
             InitializeComponent();
         }
 
@@ -28,5 +34,46 @@ namespace SimpleWpfTextEditor
         {
             Close();
         }
+
+        private void FindNext(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string text = Data.Text;
+                int position = text.IndexOf(SearchString.Text, cursorPosition);
+                if (position == -1)
+                {
+                    if (cursorPosition == 0)
+                    {
+                        MessageBox.Show("No occurrences found",
+                                    "Notification",
+                                    MessageBoxButton.OK);
+                        return;
+                    }
+                    MessageBox.Show("No more occurrences found, first occcurrence showed",
+                                    "Notification",
+                                    MessageBoxButton.OK);
+                    cursorPosition = 0;
+                    FindNext(null!, null!);
+                    return;
+                }
+                cursorPosition = position + 1;
+                SelectTextFunction(position, SearchString.Text.Length);
+            }
+            catch
+            {
+                MessageBox.Show("No occurrences found",
+                                    "Notification",
+                                    MessageBoxButton.OK);
+                cursorPosition = 0;
+                return;
+            }
+        }
+
+        private void ResetCursorPosition(object sender, TextChangedEventArgs e)
+        {
+            cursorPosition = 0;
+        }
     }
+    public delegate void SelectTextDelegate(int position, int length);
 }

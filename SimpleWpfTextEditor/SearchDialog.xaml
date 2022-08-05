@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
-        Title="Search" Height="140" Width="450" ResizeMode="CanMinimize">
+        Title="Search" Height="140" Width="450" ResizeMode="CanMinimize" Topmost="True">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -17,8 +17,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="Find:" VerticalAlignment="Bottom" Margin="10,0"/>
-        <TextBox Grid.Row="1" Grid.Column="0" Margin="5"/>
-        <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="Find next"/>
+        <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Name="SearchString" TextChanged="ResetCursorPosition"/>
+        <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="Find next" Click="FindNext"/>
         <Button Grid.Row="2" Grid.Column="1" Margin="5" Content="Cancel" Click="Close"/>
     </Grid>
 </Window>
