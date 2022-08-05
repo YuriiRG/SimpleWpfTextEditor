@@ -171,5 +171,11 @@ namespace SimpleWpfTextEditor
         {
             Data.RecentFilesClear();
         }
+
+        private void OpenSearchDialog(object sender, ExecutedRoutedEventArgs e)
+        {
+            SearchDialog dialog = new();
+            dialog.Show();
+        }
     }
 }

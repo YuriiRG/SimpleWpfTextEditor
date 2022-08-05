@@ -29,6 +29,8 @@
                         Executed="OpenRecentFile"/>
         <CommandBinding Command="local:CustomCommands.ClearRecentFiles"
                         Executed="ClearRecentFiles"/>
+        <CommandBinding Command="ApplicationCommands.Find"
+                        Executed="OpenSearchDialog"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
@@ -88,6 +90,9 @@
                 <MenuItem Name="MenuItemCut"
                           Header="C_ut"
                           Command="ApplicationCommands.Cut"/>
+                <MenuItem Name="MenuItemSearch"
+                          Header="_Find"
+                          Command="ApplicationCommands.Find"/>
             </MenuItem>
             <MenuItem Header="_Preferences">
                 <MenuItem Name="MenuItemChangeFont"
