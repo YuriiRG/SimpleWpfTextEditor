@@ -39,8 +39,14 @@ namespace SimpleWpfTextEditor
         {
             try
             {
+                string searchString = SearchString.Text;
                 string text = Data.Text;
-                int position = text.IndexOf(SearchString.Text, cursorPosition);
+                if (MatchCaseCheckBox.IsChecked == false)
+                {
+                    text = text.ToLower();
+                    searchString = searchString.ToLower();
+                }
+                int position = text.IndexOf(searchString, cursorPosition);
                 if (position == -1)
                 {
                     if (cursorPosition == 0)

@@ -27,7 +27,8 @@
                  Name="SearchString"
                  TextChanged="ResetCursorPosition"/>
         
-        <CheckBox Grid.Row="2"
+        <CheckBox Name="MatchCaseCheckBox"
+                  Grid.Row="2"
                   Grid.Column="0"
                   Content="Match case"
                   IsChecked="True"
