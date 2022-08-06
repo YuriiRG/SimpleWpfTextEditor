@@ -16,15 +16,34 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Find:" VerticalAlignment="Bottom" Margin="10,0"/>
-        <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Name="SearchString" TextChanged="ResetCursorPosition"/>
+        
+        <TextBlock Text="Find:"
+                   VerticalAlignment="Bottom"
+                   Margin="10,0"/>
+        
+        <TextBox Grid.Row="1"
+                 Grid.Column="0"
+                 Margin="5"
+                 Name="SearchString"
+                 TextChanged="ResetCursorPosition"/>
+        
         <CheckBox Grid.Row="2"
                   Grid.Column="0"
                   Content="Match case"
                   IsChecked="True"
                   VerticalAlignment="Center"
                   Margin="10"/>
-        <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="Find next" Click="FindNext"/>
-        <Button Grid.Row="2" Grid.Column="1" Margin="5" Content="Cancel" Click="Close"/>
+        
+        <Button Grid.Row="1"
+                Grid.Column="1"
+                Margin="5"
+                Content="Find next"
+                Click="FindNext"/>
+        
+        <Button Grid.Row="2"
+                Grid.Column="1"
+                Margin="5"
+                Content="Cancel"
+                Click="Close"/>
     </Grid>
 </Window>
