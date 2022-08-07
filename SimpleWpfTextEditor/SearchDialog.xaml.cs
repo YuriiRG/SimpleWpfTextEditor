@@ -46,10 +46,10 @@ namespace SimpleWpfTextEditor
                     text = text.ToLower();
                     searchString = searchString.ToLower();
                 }
-                int position = text.IndexOf(searchString, cursorPosition);
+                int position = text.IndexOf(searchString, cursorPosition+1);
                 if (position == -1)
                 {
-                    if (cursorPosition == 0)
+                    if (!AreOccurrencesExist())
                     {
                         MessageBox.Show("No occurrences found",
                                     "Notification",
@@ -63,7 +63,7 @@ namespace SimpleWpfTextEditor
                     FindNext(null!, null!);
                     return;
                 }
-                cursorPosition = position + 1;
+                cursorPosition = position;
                 SelectTextFunction(position, SearchString.Text.Length);
             }
             catch
@@ -79,6 +79,59 @@ namespace SimpleWpfTextEditor
         private void ResetCursorPosition(object sender, TextChangedEventArgs e)
         {
             cursorPosition = 0;
+        }
+
+        private void FindPrevious(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string searchString = SearchString.Text;
+                string text = Data.Text;
+                if (MatchCaseCheckBox.IsChecked == false)
+                {
+                    text = text.ToLower();
+                    searchString = searchString.ToLower();
+                }
+                text = text.Substring(0, cursorPosition);
+                int position = text.LastIndexOf(searchString, cursorPosition);
+                if (position == -1)
+                {
+                    if (!AreOccurrencesExist())
+                    {
+                        MessageBox.Show("No occurrences found",
+                                    "Notification",
+                                    MessageBoxButton.OK);
+                        return;
+                    }
+                    MessageBox.Show("No more occurrences found, last occcurrence showed",
+                                    "Notification",
+                                    MessageBoxButton.OK);
+                    cursorPosition = Data.Text.Length-1;
+                    FindPrevious(null!, null!);
+                    return;
+                }
+                cursorPosition = position;
+                SelectTextFunction(position, SearchString.Text.Length);
+            }
+            catch
+            {
+                MessageBox.Show("No occurrences found",
+                                    "Notification",
+                                    MessageBoxButton.OK);
+                cursorPosition = 0;
+                return;
+            }
+        }
+        private bool AreOccurrencesExist()
+        {
+            if ((bool)MatchCaseCheckBox.IsChecked!)
+            {
+                return Data.Text.IndexOf(SearchString.Text) != -1;
+            }
+            else
+            {
+                return Data.Text.ToLower().IndexOf(SearchString.Text.ToLower()) != -1;
+            }
         }
     }
     public delegate void SelectTextDelegate(int position, int length);

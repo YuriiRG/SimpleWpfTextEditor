@@ -40,7 +40,13 @@
                 Margin="5"
                 Content="Find next"
                 Click="FindNext"/>
-        
+
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                Margin="5"
+                Content="Find previous"
+                Click="FindPrevious"/>
+
         <Button Grid.Row="2"
                 Grid.Column="1"
                 Margin="5"
