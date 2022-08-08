@@ -106,6 +106,15 @@
                           IsChecked="{Binding WrapText, UpdateSourceTrigger=PropertyChanged}"/>
             </MenuItem>
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="{Binding CharactersNumber}"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Text="{Binding LinesNumber}"/>
+            </StatusBarItem>
+        </StatusBar>
         <TextBox Name="MainTextBox"
                  Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
                  TextWrapping="{Binding WrapText, Converter={StaticResource boolWarpEnumConverter}}"

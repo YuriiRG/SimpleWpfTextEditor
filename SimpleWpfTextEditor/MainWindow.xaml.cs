@@ -72,6 +72,7 @@ namespace SimpleWpfTextEditor
         {
             fileStateFSM.EventHappened(FileEvents.FileChanged);
             UpdateWindowTitle();
+            Data.UpdateCounters();
         }
 
         private void UpdateWindowTitle()

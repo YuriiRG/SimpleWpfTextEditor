@@ -147,6 +147,27 @@ namespace SimpleWpfTextEditor
             }
         }
 
+        public string CharactersNumber
+        {
+            get
+            {
+                return $"{Text.Length} characters";
+            }
+        }
+
+        public string LinesNumber
+        {
+            get
+            {
+                return $"{Text.Split('\n').Length} lines";
+            }
+        }
+
+        public void UpdateCounters()
+        {
+            OnPropertyChanged("CharactersNumber");
+            OnPropertyChanged("LinesNumber");
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
