@@ -28,6 +28,7 @@ namespace SimpleWpfTextEditor
             SelectTextFunction = selectText;
             Data = data;
             InitializeComponent();
+            SearchString.Focus();
         }
 
         private void Close(object sender, RoutedEventArgs e)
@@ -65,6 +66,7 @@ namespace SimpleWpfTextEditor
                 }
                 cursorPosition = position;
                 SelectTextFunction(position, SearchString.Text.Length);
+                SearchString.Focus();
             }
             catch
             {
@@ -112,6 +114,7 @@ namespace SimpleWpfTextEditor
                 }
                 cursorPosition = position;
                 SelectTextFunction(position, SearchString.Text.Length);
+                SearchString.Focus();
             }
             catch
             {
@@ -131,6 +134,14 @@ namespace SimpleWpfTextEditor
             else
             {
                 return Data.Text.ToLower().IndexOf(SearchString.Text.ToLower()) != -1;
+            }
+        }
+
+        private void SearchString_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && SearchString.IsFocused)
+            {
+                FindNext(null!, null!);
             }
         }
     }

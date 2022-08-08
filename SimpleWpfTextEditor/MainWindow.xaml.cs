@@ -192,5 +192,20 @@ namespace SimpleWpfTextEditor
                 return;
             }
         }
+
+        private void MainTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void Window_Activated(object sender, System.EventArgs e)
+        {
+            MainTextBox.Focus();
+        }
+
+        private void Window_Deactivated(object sender, System.EventArgs e)
+        {
+            MenuItemFile.Focus();
+        }
     }
 }

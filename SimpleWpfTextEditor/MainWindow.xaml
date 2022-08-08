@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="450" Width="800"
-        PreviewMouseWheel="ChangeFontSizeWithMouseWheel">
+        PreviewMouseWheel="ChangeFontSizeWithMouseWheel"
+        Activated="Window_Activated"
+        Deactivated="Window_Deactivated">
     <Window.Resources>
         <local:BoolWarpEnumConverter x:Key="boolWarpEnumConverter"/>
     </Window.Resources>
@@ -40,7 +42,7 @@
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">
-            <MenuItem Header="_File">
+            <MenuItem Header="_File" Name="MenuItemFile">
                 <MenuItem Name="MenuItemOpen"
                           Header="_Open"
                           Command="ApplicationCommands.Open"/>
@@ -113,7 +115,8 @@
                  TextChanged="MainTextBox_TextChanged"
                  FontSize="{Binding FontSize}"
                  FontFamily="{Binding FontFamily}"
-                 VerticalScrollBarVisibility="Visible">
+                 VerticalScrollBarVisibility="Visible"
+                 LostFocus="MainTextBox_LostFocus">
         </TextBox>
     </DockPanel>
 </Window>

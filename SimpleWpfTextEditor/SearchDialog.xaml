@@ -25,7 +25,8 @@
                  Grid.Column="0"
                  Margin="5"
                  Name="SearchString"
-                 TextChanged="ResetCursorPosition"/>
+                 TextChanged="ResetCursorPosition"
+                 KeyDown="SearchString_KeyDown"/>
         
         <CheckBox Name="MatchCaseCheckBox"
                   Grid.Row="2"
