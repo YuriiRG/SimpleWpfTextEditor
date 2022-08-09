@@ -177,4 +177,61 @@
   <data name="WindowTitleNoFile" xml:space="preserve">
     <value>No file opened</value>
   </data>
+  <data name="UnsavedChanges" xml:space="preserve">
+    <value>Unsaved changes will be lost. Are you sure you want to do this action?</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="NoOccurrences" xml:space="preserve">
+    <value>No occurrences found.</value>
+  </data>
+  <data name="NoOccurrencesFirstShown" xml:space="preserve">
+    <value>No occurrences found. First one is shown.</value>
+  </data>
+  <data name="NoOccurrencesLastShown" xml:space="preserve">
+    <value>No occurrences found. Last one is shown.</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="GeneralError" xml:space="preserve">
+    <value>Error. It shouldn't have happened.</value>
+  </data>
+  <data name="FontFamily" xml:space="preserve">
+    <value>Font family:</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Font size:</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="InvalidData" xml:space="preserve">
+    <value>Invalid data entered</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Find:</value>
+  </data>
+  <data name="FindNext" xml:space="preserve">
+    <value>Find next</value>
+  </data>
+  <data name="FindPrevious" xml:space="preserve">
+    <value>Find previous</value>
+  </data>
+  <data name="MatchCase" xml:space="preserve">
+    <value>Match case</value>
+  </data>
+  <data name="ChooseFont" xml:space="preserve">
+    <value>Choose font</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

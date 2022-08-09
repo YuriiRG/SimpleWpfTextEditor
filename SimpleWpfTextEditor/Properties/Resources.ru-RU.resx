@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
   <data name="Characters" xml:space="preserve">
     <value>символов</value>
   </data>
+  <data name="ChooseFont" xml:space="preserve">
+    <value>Выбор шрифта</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Найти:</value>
+  </data>
+  <data name="FindNext" xml:space="preserve">
+    <value>Найти следующее</value>
+  </data>
+  <data name="FindPrevious" xml:space="preserve">
+    <value>Найти предыдущее</value>
+  </data>
+  <data name="FontFamily" xml:space="preserve">
+    <value>Шрифт:</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Размер шрифта:</value>
+  </data>
+  <data name="GeneralError" xml:space="preserve">
+    <value>Ошибка. Этого не должно было произойти.</value>
+  </data>
+  <data name="InvalidData" xml:space="preserve">
+    <value>Введены некоректные данные</value>
+  </data>
   <data name="Lines" xml:space="preserve">
     <value>строк</value>
+  </data>
+  <data name="MatchCase" xml:space="preserve">
+    <value>Учитывать регистр</value>
   </data>
   <data name="MenuItemChangeFontHeader" xml:space="preserve">
     <value>Изменить шрифт</value>
@@ -173,6 +209,27 @@
   </data>
   <data name="MenuItemTextWrapHeader" xml:space="preserve">
     <value>Перенос строк</value>
+  </data>
+  <data name="NoOccurrences" xml:space="preserve">
+    <value>Вхождений не найдено.</value>
+  </data>
+  <data name="NoOccurrencesFirstShown" xml:space="preserve">
+    <value>Вхождений не найдено. Показано первое.</value>
+  </data>
+  <data name="NoOccurrencesLastShown" xml:space="preserve">
+    <value>Вхождений не найдено. Показано последнее</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Уведомление</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="UnsavedChanges" xml:space="preserve">
+    <value>Несохраненные изменения будут потеряны. Вы уверенны, что хотите совершить эту операцию?</value>
   </data>
   <data name="WindowTitleNoFile" xml:space="preserve">
     <value>Файл не открыт</value>

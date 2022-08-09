@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:SimpleWpfTextEditor.Properties"
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
-        Title="Choose font" Height="200" Width="300" ResizeMode="NoResize">
+        Title="{x:Static p:Resources.ChooseFont}" Height="200" Width="300" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -20,8 +21,8 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
-        
-        <TextBlock Text="Font family:"
+
+        <TextBlock Text="{x:Static p:Resources.FontFamily}"
                    Grid.Row="0"
                    Grid.Column="1"
                    Margin="6,0,0,0"
@@ -32,8 +33,8 @@
                   Grid.Row="1"
                   Grid.Column="1"
                   Margin="3" />
-        
-        <TextBlock Text="Font size:"
+
+        <TextBlock Text="{x:Static p:Resources.FontSize}"
                    Grid.Row="2"
                    Grid.Column="1"
                    VerticalAlignment="Center"
@@ -43,14 +44,14 @@
                  Grid.Row="3"
                  Grid.Column="1"
                  Margin="3"/>
-        
-        <Button Content="Save"
+
+        <Button Content="{x:Static p:Resources.Save}"
                 Grid.Row="4"
                 Grid.Column="1"
                 Margin="3"
                 Click="SaveAndClose"/>
-        
-        <Button Content="Cancel"
+
+        <Button Content="{x:Static p:Resources.Cancel}"
                 Grid.Row="5"
                 Grid.Column="1"
                 Click="Close"

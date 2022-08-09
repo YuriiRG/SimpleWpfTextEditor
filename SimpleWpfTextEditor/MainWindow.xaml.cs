@@ -140,8 +140,7 @@ namespace SimpleWpfTextEditor
         {
             if (fileStateFSM.State == FileStates.ChangedFile)
             {
-                string unsavedFileMessage =
-                    "Unsaved changes will be lost. Are you sure you want to do this action?";
+                string unsavedFileMessage = Properties.Resources.UnsavedChanges;
                 var result = MessageBox.Show(unsavedFileMessage,
                                              "Confirmation",
                                              MessageBoxButton.YesNo,
@@ -203,7 +202,7 @@ namespace SimpleWpfTextEditor
             }
             catch
             {
-                MessageBox.Show("No occurrences found",
+                MessageBox.Show(Properties.Resources.NoOccurrences,
                                     "Notification",
                                     MessageBoxButton.OK);
                 return;
@@ -254,7 +253,7 @@ namespace SimpleWpfTextEditor
                     locale = "ru-RU";
                     break;
                 default:
-                    MessageBox.Show("Error. It shouldn't have happened.");
+                    MessageBox.Show(Properties.Resources.GeneralError);
                     return;
             }
             Data.Locale = locale;

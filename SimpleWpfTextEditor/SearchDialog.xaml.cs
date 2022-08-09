@@ -52,13 +52,13 @@ namespace SimpleWpfTextEditor
                 {
                     if (!AreOccurrencesExist())
                     {
-                        MessageBox.Show("No occurrences found",
-                                    "Notification",
+                        MessageBox.Show(Properties.Resources.NoOccurrences,
+                                    Properties.Resources.Notification,
                                     MessageBoxButton.OK);
                         return;
                     }
-                    MessageBox.Show("No more occurrences found, first occcurrence showed",
-                                    "Notification",
+                    MessageBox.Show(Properties.Resources.NoOccurrencesFirstShown,
+                                    Properties.Resources.Notification,
                                     MessageBoxButton.OK);
                     cursorPosition = 0;
                     FindNext(null!, null!);
@@ -70,8 +70,8 @@ namespace SimpleWpfTextEditor
             }
             catch
             {
-                MessageBox.Show("No occurrences found",
-                                    "Notification",
+                MessageBox.Show(Properties.Resources.NoOccurrences,
+                                    Properties.Resources.Notification,
                                     MessageBoxButton.OK);
                 cursorPosition = 0;
                 return;
@@ -100,13 +100,13 @@ namespace SimpleWpfTextEditor
                 {
                     if (!AreOccurrencesExist())
                     {
-                        MessageBox.Show("No occurrences found",
-                                    "Notification",
+                        MessageBox.Show(Properties.Resources.NoOccurrences,
+                                    Properties.Resources.Notification,
                                     MessageBoxButton.OK);
                         return;
                     }
-                    MessageBox.Show("No more occurrences found, last occcurrence showed",
-                                    "Notification",
+                    MessageBox.Show(Properties.Resources.NoOccurrencesLastShown,
+                                    Properties.Resources.Notification,
                                     MessageBoxButton.OK);
                     cursorPosition = Data.Text.Length-1;
                     FindPrevious(null!, null!);
@@ -118,8 +118,8 @@ namespace SimpleWpfTextEditor
             }
             catch
             {
-                MessageBox.Show("No occurrences found",
-                                    "Notification",
+                MessageBox.Show(Properties.Resources.NoOccurrences,
+                                    Properties.Resources.Notification,
                                     MessageBoxButton.OK);
                 cursorPosition = 0;
                 return;

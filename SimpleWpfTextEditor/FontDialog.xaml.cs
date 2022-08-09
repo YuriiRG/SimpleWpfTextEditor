@@ -42,8 +42,8 @@ namespace SimpleWpfTextEditor
             }
             catch
             {
-                MessageBox.Show("Invalid data entered",
-                                "Error",
+                MessageBox.Show(Properties.Resources.InvalidData,
+                                Properties.Resources.Error,
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                 return;
