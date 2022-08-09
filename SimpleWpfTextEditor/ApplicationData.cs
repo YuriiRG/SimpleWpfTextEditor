@@ -176,7 +176,7 @@ namespace SimpleWpfTextEditor
         {
             get
             {
-                return $"{Text.Length} characters";
+                return $"{Text.Length} {Properties.Resources.Characters}";
             }
         }
 
@@ -184,7 +184,7 @@ namespace SimpleWpfTextEditor
         {
             get
             {
-                return $"{Text.Split('\n').Length} lines";
+                return $"{Text.Split('\n').Length} {Properties.Resources.Lines}";
             }
         }
 

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Characters" xml:space="preserve">
+    <value>characters</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>lines</value>
+  </data>
   <data name="MenuItemChangeFontHeader" xml:space="preserve">
     <value>Change font</value>
   </data>
@@ -167,5 +173,8 @@
   </data>
   <data name="MenuItemTextWrapHeader" xml:space="preserve">
     <value>Wrap text</value>
+  </data>
+  <data name="WindowTitleNoFile" xml:space="preserve">
+    <value>No file opened</value>
   </data>
 </root>

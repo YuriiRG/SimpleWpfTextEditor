@@ -24,6 +24,7 @@ namespace SimpleWpfTextEditor
             InitializeComponent();
             DataContext = Data;
             UpdateLanguageMenuItems();
+            UpdateWindowTitle();
         }
 
         private void UpdateLanguageMenuItems()
@@ -95,7 +96,7 @@ namespace SimpleWpfTextEditor
             switch (fileStateFSM.State)
             {
                 case FileStates.NoFile:
-                    Data.WindowTitle = "No file opened";
+                    Data.WindowTitle = Properties.Resources.WindowTitleNoFile;
                     break;
                 case FileStates.FileNoChanges:
                     Data.WindowTitle = Data.CurrentFilePath;

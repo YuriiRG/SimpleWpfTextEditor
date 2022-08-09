@@ -61,6 +61,24 @@ namespace SimpleWpfTextEditor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на characters.
+        /// </summary>
+        public static string Characters {
+            get {
+                return ResourceManager.GetString("Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на lines.
+        /// </summary>
+        public static string Lines {
+            get {
+                return ResourceManager.GetString("Lines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Change font.
         /// </summary>
         public static string MenuItemChangeFontHeader {
@@ -210,6 +228,15 @@ namespace SimpleWpfTextEditor.Properties {
         public static string MenuItemTextWrapHeader {
             get {
                 return ResourceManager.GetString("MenuItemTextWrapHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на No file opened.
+        /// </summary>
+        public static string WindowTitleNoFile {
+            get {
+                return ResourceManager.GetString("WindowTitleNoFile", resourceCulture);
             }
         }
     }

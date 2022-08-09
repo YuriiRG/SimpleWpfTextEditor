@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Characters" xml:space="preserve">
+    <value>символов</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>строк</value>
+  </data>
   <data name="MenuItemChangeFontHeader" xml:space="preserve">
     <value>Изменить шрифт</value>
   </data>
@@ -167,5 +173,8 @@
   </data>
   <data name="MenuItemTextWrapHeader" xml:space="preserve">
     <value>Перенос строк</value>
+  </data>
+  <data name="WindowTitleNoFile" xml:space="preserve">
+    <value>Файл не открыт</value>
   </data>
 </root>
