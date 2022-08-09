@@ -45,22 +45,22 @@
         <Menu DockPanel.Dock="Top" Background="#EEE">
             <MenuItem Header="{x:Static p:Resources.MenuItemFileHeader}" Name="MenuItemFile">
                 <MenuItem Name="MenuItemOpen"
-                          Header="_Open"
+                          Header="{x:Static p:Resources.MenuItemOpenHeader}"
                           Command="ApplicationCommands.Open"/>
                 <MenuItem Name="MenuItemSave"
-                          Header="_Save"
+                          Header="{x:Static p:Resources.MenuItemSaveHeader}"
                           Command="ApplicationCommands.Save"/>
                 <MenuItem Name="MenuItemSaveAs"
-                          Header="Save _As"
+                          Header="{x:Static p:Resources.MenuItemSaveAsHeader}"
                           Command="ApplicationCommands.SaveAs"
                           InputGestureText="Ctrl+Shift+S"/>
                 <Separator/>
                 <MenuItem Name="MenuItemReloadCurrentFile"
-                          Header="Reload current file"
+                          Header="{x:Static p:Resources.MenuItemReloadFileHeader}"
                           Command="local:CustomCommands.ReloadFile"
                           InputGestureText="F5"/>
                 <Separator/>
-                <MenuItem Header="Recent files"
+                <MenuItem Header="{x:Static p:Resources.MenuItemRecentFilesHeader}"
                           ItemsSource="{Binding RecentFiles}"
                           IsEnabled="{Binding IsRecentFilesNotEmpty}">
                     <MenuItem.ItemContainerStyle>
@@ -75,37 +75,37 @@
                     </MenuItem.ItemContainerStyle>
                 </MenuItem>
                 <MenuItem Name="MenuItemClearRecentFile"
-                          Header="Clear recent files"
+                          Header="{x:Static p:Resources.MenuItemClearRecentsHeader}"
                           Command="local:CustomCommands.ClearRecentFiles"/>
                 <Separator/>
                 <MenuItem Name="MenuItemQuit"
-                          Header="Quit"
+                          Header="{x:Static p:Resources.MenuItemQuitHeader}"
                           Command="local:CustomCommands.Quit"
                           InputGestureText="Alt+F4"/>
             </MenuItem>
-            <MenuItem Header="_Edit">
+            <MenuItem Header="{x:Static p:Resources.MenuItemEditHeader}">
                 <MenuItem Name="MenuItemCopy"
-                          Header="_Copy"
+                          Header="{x:Static p:Resources.MenuItemCopyHeader}"
                           Command="ApplicationCommands.Copy"/>
                 <MenuItem Name="MenuItemPaste"
-                          Header="_Paste"
+                          Header="{x:Static p:Resources.MenuItemPasteHeader}"
                           Command="ApplicationCommands.Paste"/>
                 <MenuItem Name="MenuItemCut"
-                          Header="C_ut"
+                          Header="{x:Static p:Resources.MenuItemCutHeader}"
                           Command="ApplicationCommands.Cut"/>
                 <MenuItem Name="MenuItemSearch"
-                          Header="_Find"
+                          Header="{x:Static p:Resources.MenuItemFindHeader}"
                           Command="ApplicationCommands.Find"/>
             </MenuItem>
-            <MenuItem Header="_Preferences">
+            <MenuItem Header="{x:Static p:Resources.MenuItemPrefsHeader}">
                 <MenuItem Name="MenuItemChangeFont"
-                          Header="Change _font"
+                          Header="{x:Static p:Resources.MenuItemChangeFontHeader}"
                           Command="local:CustomCommands.ChangeFont"/>
                 <MenuItem Name="MenuItemWrapText"
-                          Header="_Wrap text"
+                          Header="{x:Static p:Resources.MenuItemTextWrapHeader}"
                           IsCheckable="True"
                           IsChecked="{Binding WrapText, UpdateSourceTrigger=PropertyChanged}"/>
-                <MenuItem Name="MenuItemLangs" Header="_Language">
+                <MenuItem Name="MenuItemLangs" Header="{x:Static p:Resources.MenuItemLangHeader}">
                     <MenuItem Header="English"
                               IsCheckable="True"
                               Click="ChangeLanguage"/>

@@ -61,6 +61,51 @@ namespace SimpleWpfTextEditor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Change font.
+        /// </summary>
+        public static string MenuItemChangeFontHeader {
+            get {
+                return ResourceManager.GetString("MenuItemChangeFontHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Clear recent files.
+        /// </summary>
+        public static string MenuItemClearRecentsHeader {
+            get {
+                return ResourceManager.GetString("MenuItemClearRecentsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на _Copy.
+        /// </summary>
+        public static string MenuItemCopyHeader {
+            get {
+                return ResourceManager.GetString("MenuItemCopyHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на C_ut.
+        /// </summary>
+        public static string MenuItemCutHeader {
+            get {
+                return ResourceManager.GetString("MenuItemCutHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на _Edit.
+        /// </summary>
+        public static string MenuItemEditHeader {
+            get {
+                return ResourceManager.GetString("MenuItemEditHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на _File.
         /// </summary>
         public static string MenuItemFileHeader {
@@ -70,11 +115,101 @@ namespace SimpleWpfTextEditor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на In english.
+        ///   Ищет локализованную строку, похожую на Find.
         /// </summary>
-        public static string TestString {
+        public static string MenuItemFindHeader {
             get {
-                return ResourceManager.GetString("TestString", resourceCulture);
+                return ResourceManager.GetString("MenuItemFindHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Language.
+        /// </summary>
+        public static string MenuItemLangHeader {
+            get {
+                return ResourceManager.GetString("MenuItemLangHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на _Open.
+        /// </summary>
+        public static string MenuItemOpenHeader {
+            get {
+                return ResourceManager.GetString("MenuItemOpenHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на _Paste.
+        /// </summary>
+        public static string MenuItemPasteHeader {
+            get {
+                return ResourceManager.GetString("MenuItemPasteHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на _Preferences.
+        /// </summary>
+        public static string MenuItemPrefsHeader {
+            get {
+                return ResourceManager.GetString("MenuItemPrefsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Quit.
+        /// </summary>
+        public static string MenuItemQuitHeader {
+            get {
+                return ResourceManager.GetString("MenuItemQuitHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Recent files.
+        /// </summary>
+        public static string MenuItemRecentFilesHeader {
+            get {
+                return ResourceManager.GetString("MenuItemRecentFilesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Reload current file.
+        /// </summary>
+        public static string MenuItemReloadFileHeader {
+            get {
+                return ResourceManager.GetString("MenuItemReloadFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Save _As.
+        /// </summary>
+        public static string MenuItemSaveAsHeader {
+            get {
+                return ResourceManager.GetString("MenuItemSaveAsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на _Save.
+        /// </summary>
+        public static string MenuItemSaveHeader {
+            get {
+                return ResourceManager.GetString("MenuItemSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Wrap text.
+        /// </summary>
+        public static string MenuItemTextWrapHeader {
+            get {
+                return ResourceManager.GetString("MenuItemTextWrapHeader", resourceCulture);
             }
         }
     }

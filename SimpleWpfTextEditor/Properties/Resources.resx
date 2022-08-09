@@ -117,10 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MenuItemChangeFontHeader" xml:space="preserve">
+    <value>Change font</value>
+  </data>
+  <data name="MenuItemClearRecentsHeader" xml:space="preserve">
+    <value>Clear recent files</value>
+  </data>
+  <data name="MenuItemCopyHeader" xml:space="preserve">
+    <value>_Copy</value>
+  </data>
+  <data name="MenuItemCutHeader" xml:space="preserve">
+    <value>C_ut</value>
+  </data>
+  <data name="MenuItemEditHeader" xml:space="preserve">
+    <value>_Edit</value>
+  </data>
   <data name="MenuItemFileHeader" xml:space="preserve">
     <value>_File</value>
   </data>
-  <data name="TestString" xml:space="preserve">
-    <value>In english</value>
+  <data name="MenuItemFindHeader" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="MenuItemLangHeader" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MenuItemOpenHeader" xml:space="preserve">
+    <value>_Open</value>
+  </data>
+  <data name="MenuItemPasteHeader" xml:space="preserve">
+    <value>_Paste</value>
+  </data>
+  <data name="MenuItemPrefsHeader" xml:space="preserve">
+    <value>_Preferences</value>
+  </data>
+  <data name="MenuItemQuitHeader" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="MenuItemRecentFilesHeader" xml:space="preserve">
+    <value>Recent files</value>
+  </data>
+  <data name="MenuItemReloadFileHeader" xml:space="preserve">
+    <value>Reload current file</value>
+  </data>
+  <data name="MenuItemSaveAsHeader" xml:space="preserve">
+    <value>Save _As</value>
+  </data>
+  <data name="MenuItemSaveHeader" xml:space="preserve">
+    <value>_Save</value>
+  </data>
+  <data name="MenuItemTextWrapHeader" xml:space="preserve">
+    <value>Wrap text</value>
   </data>
 </root>

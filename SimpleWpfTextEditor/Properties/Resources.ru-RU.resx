@@ -117,10 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MenuItemChangeFontHeader" xml:space="preserve">
+    <value>Изменить шрифт</value>
+  </data>
+  <data name="MenuItemClearRecentsHeader" xml:space="preserve">
+    <value>Очистить недавние</value>
+  </data>
+  <data name="MenuItemCopyHeader" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="MenuItemCutHeader" xml:space="preserve">
+    <value>Вырезать</value>
+  </data>
+  <data name="MenuItemEditHeader" xml:space="preserve">
+    <value>_Правка</value>
+  </data>
   <data name="MenuItemFileHeader" xml:space="preserve">
     <value>_Файл</value>
   </data>
-  <data name="TestString" xml:space="preserve">
-    <value>На русском</value>
+  <data name="MenuItemFindHeader" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="MenuItemLangHeader" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="MenuItemOpenHeader" xml:space="preserve">
+    <value>_Открыть</value>
+  </data>
+  <data name="MenuItemPasteHeader" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="MenuItemPrefsHeader" xml:space="preserve">
+    <value>_Настройки</value>
+  </data>
+  <data name="MenuItemQuitHeader" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="MenuItemRecentFilesHeader" xml:space="preserve">
+    <value>Недавние файлы</value>
+  </data>
+  <data name="MenuItemReloadFileHeader" xml:space="preserve">
+    <value>Перезагрузить файл</value>
+  </data>
+  <data name="MenuItemSaveAsHeader" xml:space="preserve">
+    <value>Сохранить _как</value>
+  </data>
+  <data name="MenuItemSaveHeader" xml:space="preserve">
+    <value>_Сохранить</value>
+  </data>
+  <data name="MenuItemTextWrapHeader" xml:space="preserve">
+    <value>Перенос строк</value>
   </data>
 </root>
