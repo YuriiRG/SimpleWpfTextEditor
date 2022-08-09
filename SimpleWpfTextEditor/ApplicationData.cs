@@ -35,6 +35,16 @@ namespace SimpleWpfTextEditor
             SettingsWriter.Save(settings);
         }
 
+        public int GetLocaleIndex()
+        {
+            return Locale switch
+            {
+                "en" => 0,
+                "ru-RU" => 1,
+                _ => 0,
+            };
+        }
+
         public void RecentFilesRemoveAt(int index)
         {
             RecentFiles.RemoveAt(index);
@@ -102,6 +112,21 @@ namespace SimpleWpfTextEditor
             }
         }
 
+        public string Locale
+        {
+            get
+            {
+                return settings.Locale;
+            }
+            set
+            {
+                if (value != settings.Locale)
+                {
+                    settings.Locale = value;
+                    SettingsWriter.Save(settings);
+                }
+            }
+        }
 
         public string CurrentFilePath { get; set; } = String.Empty;
 

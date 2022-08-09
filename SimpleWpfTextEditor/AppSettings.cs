@@ -8,5 +8,6 @@ namespace SimpleWpfTextEditor
         public string FontFamily { get; set; } = "Consolas";
         public double FontSize { get; set; } = 14;
         public bool WrapText { get; set; } = true;
+        public string Locale { get; set; } = "en";
     }
 }

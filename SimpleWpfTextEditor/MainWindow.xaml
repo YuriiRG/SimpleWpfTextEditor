@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:SimpleWpfTextEditor.Properties"
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="450" Width="800"
@@ -42,7 +43,7 @@
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Background="#EEE">
-            <MenuItem Header="_File" Name="MenuItemFile">
+            <MenuItem Header="{x:Static p:Resources.MenuItemFileHeader}" Name="MenuItemFile">
                 <MenuItem Name="MenuItemOpen"
                           Header="_Open"
                           Command="ApplicationCommands.Open"/>
@@ -104,6 +105,15 @@
                           Header="_Wrap text"
                           IsCheckable="True"
                           IsChecked="{Binding WrapText, UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Name="MenuItemLangs" Header="_Language">
+                    <MenuItem Header="English"
+                              IsCheckable="True"
+                              Click="ChangeLanguage"/>
+                    <MenuItem Header="Русский"
+                              IsCheckable="True"
+                              Click="ChangeLanguage"/>
+
+                </MenuItem>
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">

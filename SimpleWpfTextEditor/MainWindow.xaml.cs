@@ -1,5 +1,9 @@
 ﻿using Microsoft.Win32;
+using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,8 +20,19 @@ namespace SimpleWpfTextEditor
         private readonly ApplicationData Data = new();
         public MainWindow()
         {
+            Thread.CurrentThread.CurrentUICulture = new(Data.Locale);
             InitializeComponent();
             DataContext = Data;
+            UpdateLanguageMenuItems();
+        }
+
+        private void UpdateLanguageMenuItems()
+        {
+            foreach (var langOption in MenuItemLangs.Items)
+            {
+                ((MenuItem)langOption).IsChecked = false;
+            }
+            ((MenuItem)MenuItemLangs.Items[Data.GetLocaleIndex()]).IsChecked = true;
         }
 
         private void OpenFile(object sender, ExecutedRoutedEventArgs e)
@@ -125,7 +140,7 @@ namespace SimpleWpfTextEditor
             if (fileStateFSM.State == FileStates.ChangedFile)
             {
                 string unsavedFileMessage =
-                    "Unsaved changes will be lost. Are you sure you want to open this file?";
+                    "Unsaved changes will be lost. Are you sure you want to do this action?";
                 var result = MessageBox.Show(unsavedFileMessage,
                                              "Confirmation",
                                              MessageBoxButton.YesNo,
@@ -207,6 +222,44 @@ namespace SimpleWpfTextEditor
         private void Window_Deactivated(object sender, System.EventArgs e)
         {
             MenuItemFile.Focus();
+        }
+
+        private void ChangeLanguage(object sender, RoutedEventArgs e)
+        {
+            if (Data.GetLocaleIndex() == MenuItemLangs.Items.IndexOf(sender))
+            {
+                UpdateLanguageMenuItems();
+                return;
+            }
+            if (!UnsavedFileMessage())
+            {
+                UpdateLanguageMenuItems();
+                return;
+            }
+
+            foreach (var langOption in MenuItemLangs.Items)
+            {
+                ((MenuItem)langOption).IsChecked = false;
+            }
+            ((MenuItem)sender).IsChecked = true;
+            
+            string locale;
+            switch (((MenuItem)sender).Header)
+            {
+                case "English":
+                    locale = "en";
+                    break;
+                case "Русский":
+                    locale = "ru-RU";
+                    break;
+                default:
+                    MessageBox.Show("Error. It shouldn't have happened.");
+                    return;
+            }
+            Data.Locale = locale;
+
+            new MainWindow().Show();
+            Close();
         }
     }
 }

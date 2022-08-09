@@ -61,6 +61,15 @@ namespace SimpleWpfTextEditor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на _File.
+        /// </summary>
+        public static string MenuItemFileHeader {
+            get {
+                return ResourceManager.GetString("MenuItemFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на In english.
         /// </summary>
         public static string TestString {
