@@ -19,9 +19,17 @@ namespace SimpleWpfTextEditor
         }
         public static void Save(AppSettings? data)
         {
-            string json = JsonSerializer.Serialize(data);
-            if (json != File.ReadAllText(SettingsPath))
+            if (File.Exists(SettingsPath))
             {
+                string json = JsonSerializer.Serialize(data);
+                if (json != File.ReadAllText(SettingsPath))
+                {
+                    File.WriteAllText(SettingsPath, json);
+                }
+            }
+            else
+            {
+                string json = JsonSerializer.Serialize(data);
                 File.WriteAllText(SettingsPath, json);
             }
         }
