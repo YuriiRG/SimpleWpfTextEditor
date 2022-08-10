@@ -188,6 +188,23 @@ namespace SimpleWpfTextEditor
             }
         }
 
+        private string newLine = "\r\n";
+        public string NewLine
+        {
+            get
+            {
+                return newLine;
+            }
+            set
+            {
+                if (newLine != value)
+                {
+                    newLine = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public void UpdateCounters()
         {
             OnPropertyChanged("CharactersNumber");

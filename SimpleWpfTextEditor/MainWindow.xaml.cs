@@ -54,11 +54,13 @@ namespace SimpleWpfTextEditor
                 fileStateFSM.EventHappened(FileEvents.FileOpened);
                 UpdateWindowTitle();
                 UpdateRecentFiles(Data.CurrentFilePath);
+                UpdateNewLine();
             }
         }
 
         private void SaveFile(object sender, ExecutedRoutedEventArgs e)
         {
+            Data.Text = Data.Text.Replace("\r\n", Data.NewLine);
             File.WriteAllText(Data.CurrentFilePath, Data.Text);
             fileStateFSM.EventHappened(FileEvents.FileSaved);
             UpdateWindowTitle();
@@ -73,9 +75,7 @@ namespace SimpleWpfTextEditor
             if (saveFileDialog.ShowDialog() == true)
             {
                 Data.CurrentFilePath = saveFileDialog.FileName;
-                File.WriteAllText(Data.CurrentFilePath, Data.Text);
-                fileStateFSM.EventHappened(FileEvents.FileSaved);
-                UpdateWindowTitle();
+                SaveFile(null!, null!);
             }
         }
 
@@ -167,6 +167,7 @@ namespace SimpleWpfTextEditor
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
             fileStateFSM.EventHappened(FileEvents.FileOpened);
             UpdateWindowTitle();
+            UpdateNewLine();
             UpdateRecentFiles(Data.CurrentFilePath);
         }
 
@@ -260,6 +261,25 @@ namespace SimpleWpfTextEditor
 
             new MainWindow().Show();
             Close();
+        }
+
+        private void UpdateNewLine()
+        {
+            if (Data.Text.Contains("\n"))
+            {
+                if (Data.Text.Contains("\r\n"))
+                {
+                    Data.NewLine = "\r\n";
+                }
+                else
+                {
+                    Data.NewLine = "\n";
+                }
+            }
+            else
+            {
+                Data.NewLine = "\r\n";
+            }
         }
     }
 }
