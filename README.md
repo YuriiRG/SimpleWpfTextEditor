@@ -11,3 +11,7 @@ Features:
 - Reload the current file with F5.
 - Counter of characters and lines in the current file.
 - Support for multiple languages. Currently English and Russian.
+
+Screenshot:
+
+![Screenshot](./screenshot.jpg)
