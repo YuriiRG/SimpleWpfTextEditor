@@ -234,4 +234,10 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="MenuItemResetSettingsHeader" xml:space="preserve">
+    <value>Reset preferences</value>
+  </data>
+  <data name="ResetSettingsConfirmation" xml:space="preserve">
+    <value>Are you sure you want to reset application settings?</value>
+  </data>
 </root>

@@ -6,7 +6,7 @@ namespace SimpleWpfTextEditor
 {
     public static class SettingsWriter
     {
-        private static readonly string SettingsPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
+        public static readonly string SettingsPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
         public static AppSettings Read()
         {
             if (File.Exists(SettingsPath)) {

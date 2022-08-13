@@ -281,5 +281,19 @@ namespace SimpleWpfTextEditor
                 Data.NewLine = "\r\n";
             }
         }
+
+        private void ResetSettings(object sender, ExecutedRoutedEventArgs e)
+        {
+            var result = MessageBox.Show(Properties.Resources.ResetSettingsConfirmation,
+                                         "Confirmation",
+                                         MessageBoxButton.YesNo,
+                                         MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                File.Delete(SettingsWriter.SettingsPath);
+                new MainWindow().Show();
+                Close();
+            }
+        }
     }
 }

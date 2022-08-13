@@ -14,5 +14,7 @@ namespace SimpleWpfTextEditor
             new RoutedCommand("OpenRecentFile", typeof(MainWindow));
         public static RoutedCommand ClearRecentFiles { get; set; } =
             new RoutedCommand("ClearRecentFiles", typeof(MainWindow));
+        public static RoutedCommand ResetSettings { get; set; } =
+            new RoutedCommand("ResetSettings", typeof(MainWindow));
     }
 }

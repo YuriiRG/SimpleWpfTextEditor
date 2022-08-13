@@ -313,6 +313,15 @@ namespace SimpleWpfTextEditor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Reset preferences.
+        /// </summary>
+        public static string MenuItemResetSettingsHeader {
+            get {
+                return ResourceManager.GetString("MenuItemResetSettingsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Save _As.
         /// </summary>
         public static string MenuItemSaveAsHeader {
@@ -372,6 +381,15 @@ namespace SimpleWpfTextEditor.Properties {
         public static string Notification {
             get {
                 return ResourceManager.GetString("Notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Are you sure you want to reset application settings?.
+        /// </summary>
+        public static string ResetSettingsConfirmation {
+            get {
+                return ResourceManager.GetString("ResetSettingsConfirmation", resourceCulture);
             }
         }
         

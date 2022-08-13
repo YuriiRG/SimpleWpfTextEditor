@@ -201,6 +201,9 @@
   <data name="MenuItemReloadFileHeader" xml:space="preserve">
     <value>Перезагрузить файл</value>
   </data>
+  <data name="MenuItemResetSettingsHeader" xml:space="preserve">
+    <value>Сбросить настройки</value>
+  </data>
   <data name="MenuItemSaveAsHeader" xml:space="preserve">
     <value>Сохранить _как</value>
   </data>
@@ -221,6 +224,9 @@
   </data>
   <data name="Notification" xml:space="preserve">
     <value>Уведомление</value>
+  </data>
+  <data name="ResetSettingsConfirmation" xml:space="preserve">
+    <value>Вы действительно уверены, что хотите сбросить настройки приложения?</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>

@@ -34,6 +34,8 @@
                         Executed="ClearRecentFiles"/>
         <CommandBinding Command="ApplicationCommands.Find"
                         Executed="OpenSearchDialog"/>
+        <CommandBinding Command="local:CustomCommands.ResetSettings"
+                        Executed="ResetSettings"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
@@ -97,7 +99,7 @@
                           Header="{x:Static p:Resources.MenuItemFindHeader}"
                           Command="ApplicationCommands.Find"/>
             </MenuItem>
-            <MenuItem Header="{x:Static p:Resources.MenuItemPrefsHeader}">
+            <MenuItem Header="{x:Static p:Resources.MenuItemPrefsHeader}" Background="{x:Null}">
                 <MenuItem Name="MenuItemChangeFont"
                           Header="{x:Static p:Resources.MenuItemChangeFontHeader}"
                           Command="local:CustomCommands.ChangeFont"/>
@@ -112,8 +114,10 @@
                     <MenuItem Header="Русский"
                               IsCheckable="True"
                               Click="ChangeLanguage"/>
-
                 </MenuItem>
+                <MenuItem Name="ResetSettingsMenuItem"
+                          Header="{x:Static p:Resources.MenuItemResetSettingsHeader}"
+                          Command="local:CustomCommands.ResetSettings"/>
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
