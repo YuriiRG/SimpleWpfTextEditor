@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace SimpleWpfTextEditor
+namespace SimpleWpfTextEditor.Helpers
 {
     static class CustomCommands
     {

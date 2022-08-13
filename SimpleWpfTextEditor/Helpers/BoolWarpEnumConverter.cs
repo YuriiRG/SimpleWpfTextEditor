@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 
-namespace SimpleWpfTextEditor
+namespace SimpleWpfTextEditor.Helpers
 {
     public class BoolWarpEnumConverter : IValueConverter
     {

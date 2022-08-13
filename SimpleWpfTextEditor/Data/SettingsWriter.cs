@@ -2,17 +2,19 @@
 using System.IO;
 using System.Text.Json;
 
-namespace SimpleWpfTextEditor
+namespace SimpleWpfTextEditor.Data
 {
     public static class SettingsWriter
     {
         public static readonly string SettingsPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
         public static AppSettings Read()
         {
-            if (File.Exists(SettingsPath)) {
+            if (File.Exists(SettingsPath))
+            {
                 string json = File.ReadAllText(SettingsPath);
                 return JsonSerializer.Deserialize<AppSettings>(json)!;
-            } else
+            }
+            else
             {
                 return new AppSettings();
             }

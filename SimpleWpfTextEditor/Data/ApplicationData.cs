@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace SimpleWpfTextEditor
+namespace SimpleWpfTextEditor.Data
 {
     public class ApplicationData : INotifyPropertyChanged
     {
@@ -128,9 +128,9 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        public string CurrentFilePath { get; set; } = String.Empty;
+        public string CurrentFilePath { get; set; } = string.Empty;
 
-        private string text = String.Empty;
+        private string text = string.Empty;
         public string Text
         {
             get
@@ -168,7 +168,7 @@ namespace SimpleWpfTextEditor
         {
             get
             {
-                return (RecentFiles.Count != 0);
+                return RecentFiles.Count != 0;
             }
         }
 

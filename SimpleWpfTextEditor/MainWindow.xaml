@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:SimpleWpfTextEditor.Properties"
         xmlns:local="clr-namespace:SimpleWpfTextEditor"
+        xmlns:h="clr-namespace:SimpleWpfTextEditor.Helpers"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}"
         PreviewMouseWheel="ChangeFontSizeWithMouseWheel"
         Activated="Window_Activated"
         Deactivated="Window_Deactivated">
     <Window.Resources>
-        <local:BoolWarpEnumConverter x:Key="boolWarpEnumConverter"/>
+        <h:BoolWarpEnumConverter x:Key="boolWarpEnumConverter"/>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open"
@@ -21,26 +22,26 @@
                         CanExecute="IsAnyFileOpened"/>
         <CommandBinding Command="ApplicationCommands.SaveAs"
                         Executed="SaveFileAs"/>
-        <CommandBinding Command="local:CustomCommands.ChangeFont"
+        <CommandBinding Command="h:CustomCommands.ChangeFont"
                         Executed="OpenChangeFontDialog"/>
-        <CommandBinding Command="local:CustomCommands.ReloadFile"
+        <CommandBinding Command="h:CustomCommands.ReloadFile"
                         Executed="ReloadCurrentFile"
                         CanExecute="IsAnyFileOpened"/>
-        <CommandBinding Command="local:CustomCommands.Quit"
+        <CommandBinding Command="h:CustomCommands.Quit"
                         Executed="QuitApp"/>
-        <CommandBinding Command="local:CustomCommands.OpenRecentFile"
+        <CommandBinding Command="h:CustomCommands.OpenRecentFile"
                         Executed="OpenRecentFile"/>
-        <CommandBinding Command="local:CustomCommands.ClearRecentFiles"
+        <CommandBinding Command="h:CustomCommands.ClearRecentFiles"
                         Executed="ClearRecentFiles"/>
         <CommandBinding Command="ApplicationCommands.Find"
                         Executed="OpenSearchDialog"/>
-        <CommandBinding Command="local:CustomCommands.ResetSettings"
+        <CommandBinding Command="h:CustomCommands.ResetSettings"
                         Executed="ResetSettings"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="ApplicationCommands.SaveAs"
                     Gesture="Ctrl+Shift+S"/>
-        <KeyBinding Command="local:CustomCommands.ReloadFile"
+        <KeyBinding Command="h:CustomCommands.ReloadFile"
                     Gesture="F5"/>
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
@@ -59,7 +60,7 @@
                 <Separator/>
                 <MenuItem Name="MenuItemReloadCurrentFile"
                           Header="{x:Static p:Resources.MenuItemReloadFileHeader}"
-                          Command="local:CustomCommands.ReloadFile"
+                          Command="h:CustomCommands.ReloadFile"
                           InputGestureText="F5"/>
                 <Separator/>
                 <MenuItem Header="{x:Static p:Resources.MenuItemRecentFilesHeader}"
@@ -70,7 +71,7 @@
                             <Setter Property="MenuItem.Header"
                                     Value="{Binding}"/>
                             <Setter Property="MenuItem.Command"
-                                    Value="local:CustomCommands.OpenRecentFile"/>
+                                    Value="h:CustomCommands.OpenRecentFile"/>
                             <Setter Property="MenuItem.CommandParameter"
                                     Value="{Binding}"/>
                         </Style>
@@ -78,11 +79,11 @@
                 </MenuItem>
                 <MenuItem Name="MenuItemClearRecentFile"
                           Header="{x:Static p:Resources.MenuItemClearRecentsHeader}"
-                          Command="local:CustomCommands.ClearRecentFiles"/>
+                          Command="h:CustomCommands.ClearRecentFiles"/>
                 <Separator/>
                 <MenuItem Name="MenuItemQuit"
                           Header="{x:Static p:Resources.MenuItemQuitHeader}"
-                          Command="local:CustomCommands.Quit"
+                          Command="h:CustomCommands.Quit"
                           InputGestureText="Alt+F4"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.MenuItemEditHeader}">
@@ -102,7 +103,7 @@
             <MenuItem Header="{x:Static p:Resources.MenuItemPrefsHeader}" Background="{x:Null}">
                 <MenuItem Name="MenuItemChangeFont"
                           Header="{x:Static p:Resources.MenuItemChangeFontHeader}"
-                          Command="local:CustomCommands.ChangeFont"/>
+                          Command="h:CustomCommands.ChangeFont"/>
                 <MenuItem Name="MenuItemWrapText"
                           Header="{x:Static p:Resources.MenuItemTextWrapHeader}"
                           IsCheckable="True"
@@ -117,7 +118,7 @@
                 </MenuItem>
                 <MenuItem Name="ResetSettingsMenuItem"
                           Header="{x:Static p:Resources.MenuItemResetSettingsHeader}"
-                          Command="local:CustomCommands.ResetSettings"/>
+                          Command="h:CustomCommands.ResetSettings"/>
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">

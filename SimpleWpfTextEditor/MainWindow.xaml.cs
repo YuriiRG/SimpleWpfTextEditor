@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using SimpleWpfTextEditor.Data;
 using System;
 using System.Diagnostics;
 using System.Globalization;

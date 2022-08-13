@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace SimpleWpfTextEditor
+namespace SimpleWpfTextEditor.Data
 {
     public class AppSettings
     {
