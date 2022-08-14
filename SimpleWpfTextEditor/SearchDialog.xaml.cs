@@ -39,16 +39,40 @@ namespace SimpleWpfTextEditor
 
         private void FindNext(object sender, RoutedEventArgs e)
         {
+            Find(SearchDirection.Forward);
+            
+        }
+
+        private void FindPrevious(object sender, RoutedEventArgs e)
+        {
+            Find(SearchDirection.Backward);
+        }
+
+        private void Find(SearchDirection direction)
+        {
             try
             {
                 string searchString = SearchString.Text;
                 string text = Data.Text;
+                
                 if (MatchCaseCheckBox.IsChecked == false)
                 {
                     text = text.ToLower();
                     searchString = searchString.ToLower();
                 }
-                int position = text.IndexOf(searchString, cursorPosition+1);
+                
+                int position = -1;
+                
+                if (direction == SearchDirection.Forward)
+                {
+                    position = text.IndexOf(searchString, cursorPosition + 1);
+                }
+                else
+                {
+                    text = text.Substring(0, cursorPosition);
+                    position = text.LastIndexOf(searchString, cursorPosition);
+                }
+                
                 if (position == -1)
                 {
                     if (!AreOccurrencesExist())
@@ -58,11 +82,23 @@ namespace SimpleWpfTextEditor
                                     MessageBoxButton.OK);
                         return;
                     }
-                    MessageBox.Show(Properties.Resources.NoOccurrencesFirstShown,
+                    
+                    string message = (direction == SearchDirection.Forward) ?
+                        Properties.Resources.NoOccurrencesFirstShown :
+                        Properties.Resources.NoOccurrencesLastShown;
+                    
+                    MessageBox.Show(message,
                                     Properties.Resources.Notification,
                                     MessageBoxButton.OK);
-                    cursorPosition = 0;
-                    FindNext(null!, null!);
+                    cursorPosition = (direction == SearchDirection.Forward) ? 0 : (Data.Text.Length - 1);
+                    if (direction == SearchDirection.Forward)
+                    {
+                        Find(SearchDirection.Forward);
+                    }
+                    else
+                    {
+                        Find(SearchDirection.Backward);
+                    }
                     return;
                 }
                 cursorPosition = position;
@@ -84,48 +120,6 @@ namespace SimpleWpfTextEditor
             cursorPosition = 0;
         }
 
-        private void FindPrevious(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string searchString = SearchString.Text;
-                string text = Data.Text;
-                if (MatchCaseCheckBox.IsChecked == false)
-                {
-                    text = text.ToLower();
-                    searchString = searchString.ToLower();
-                }
-                text = text.Substring(0, cursorPosition);
-                int position = text.LastIndexOf(searchString, cursorPosition);
-                if (position == -1)
-                {
-                    if (!AreOccurrencesExist())
-                    {
-                        MessageBox.Show(Properties.Resources.NoOccurrences,
-                                    Properties.Resources.Notification,
-                                    MessageBoxButton.OK);
-                        return;
-                    }
-                    MessageBox.Show(Properties.Resources.NoOccurrencesLastShown,
-                                    Properties.Resources.Notification,
-                                    MessageBoxButton.OK);
-                    cursorPosition = Data.Text.Length-1;
-                    FindPrevious(null!, null!);
-                    return;
-                }
-                cursorPosition = position;
-                SelectTextFunction(position, SearchString.Text.Length);
-                SearchString.Focus();
-            }
-            catch
-            {
-                MessageBox.Show(Properties.Resources.NoOccurrences,
-                                    Properties.Resources.Notification,
-                                    MessageBoxButton.OK);
-                cursorPosition = 0;
-                return;
-            }
-        }
         private bool AreOccurrencesExist()
         {
             if ((bool)MatchCaseCheckBox.IsChecked!)
@@ -147,4 +141,9 @@ namespace SimpleWpfTextEditor
         }
     }
     public delegate void SelectTextDelegate(int position, int length);
+    enum SearchDirection
+    {
+        Forward,
+        Backward
+    }
 }
