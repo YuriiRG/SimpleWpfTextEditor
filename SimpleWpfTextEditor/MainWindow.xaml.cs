@@ -16,7 +16,6 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly FileStateFSM fileStateFSM = new();
         private const string PlainTextFilterString = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*";
         private readonly ApplicationData Data = new();
         public MainWindow()
@@ -25,7 +24,6 @@ namespace SimpleWpfTextEditor
             InitializeComponent();
             DataContext = Data;
             UpdateLanguageMenuItems();
-            UpdateWindowTitle();
         }
 
         private void UpdateLanguageMenuItems()
@@ -52,19 +50,17 @@ namespace SimpleWpfTextEditor
                 }
                 Data.CurrentFilePath = openFileDialog.FileName;
                 Data.Text = File.ReadAllText(openFileDialog.FileName);
-                fileStateFSM.EventHappened(FileEvents.FileOpened);
-                UpdateWindowTitle();
-                UpdateRecentFiles(Data.CurrentFilePath);
+                Data.EventHappened(FileEvents.FileOpened);
+                AddToRecentFiles(Data.CurrentFilePath);
                 UpdateNewLine();
             }
         }
 
         private void SaveFile(object sender, ExecutedRoutedEventArgs e)
         {
+            Data.EventHappened(FileEvents.FileSaved);
             Data.Text = Data.Text.Replace("\r\n", Data.NewLine);
             File.WriteAllText(Data.CurrentFilePath, Data.Text);
-            fileStateFSM.EventHappened(FileEvents.FileSaved);
-            UpdateWindowTitle();
         }
 
         private void SaveFileAs(object sender, ExecutedRoutedEventArgs e)
@@ -82,30 +78,13 @@ namespace SimpleWpfTextEditor
 
         private void IsAnyFileOpened(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = (fileStateFSM.State != FileStates.NoFile);
+            e.CanExecute = (Data.CurrentFileState != FileStates.NoFile);
         }
 
         private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            fileStateFSM.EventHappened(FileEvents.FileChanged);
-            UpdateWindowTitle();
+            Data.EventHappened(FileEvents.FileChanged);
             Data.UpdateCounters();
-        }
-
-        private void UpdateWindowTitle()
-        {
-            switch (fileStateFSM.State)
-            {
-                case FileStates.NoFile:
-                    Data.WindowTitle = Properties.Resources.WindowTitleNoFile;
-                    break;
-                case FileStates.FileNoChanges:
-                    Data.WindowTitle = Data.CurrentFilePath;
-                    break;
-                case FileStates.ChangedFile:
-                    Data.WindowTitle = Data.CurrentFilePath + "*";
-                    break;
-            }
         }
 
         private void OpenChangeFontDialog(object sender, ExecutedRoutedEventArgs e)
@@ -132,14 +111,13 @@ namespace SimpleWpfTextEditor
             {
                 return;
             }
+            Data.EventHappened(FileEvents.FileOpened);
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
-            fileStateFSM.EventHappened(FileEvents.FileOpened);
-            UpdateWindowTitle();
         }
 
         private bool UnsavedFileMessage()
         {
-            if (fileStateFSM.State == FileStates.ChangedFile)
+            if (Data.CurrentFileState == FileStates.ChangedFile)
             {
                 string unsavedFileMessage = Properties.Resources.UnsavedChanges;
                 var result = MessageBox.Show(unsavedFileMessage,
@@ -166,13 +144,12 @@ namespace SimpleWpfTextEditor
         {
             Data.CurrentFilePath = (string)e.Parameter;
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
-            fileStateFSM.EventHappened(FileEvents.FileOpened);
-            UpdateWindowTitle();
+            Data.EventHappened(FileEvents.FileOpened);
             UpdateNewLine();
-            UpdateRecentFiles(Data.CurrentFilePath);
+            AddToRecentFiles(Data.CurrentFilePath);
         }
 
-        private void UpdateRecentFiles(string newFilePath)
+        private void AddToRecentFiles(string newFilePath)
         {
             if (Data.RecentFiles.Contains(newFilePath))
             {

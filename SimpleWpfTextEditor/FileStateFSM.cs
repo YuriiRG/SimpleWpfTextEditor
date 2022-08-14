@@ -3,7 +3,7 @@
     // It's finite-state machine, explanation:
     // https://en.wikipedia.org/wiki/Finite-state_machine
     // https://stackoverflow.com/questions/5923767/
-    class FileStateFSM
+    public class FileStateFSM
     {
         public FileStates State { get; private set; } = FileStates.NoFile;
 
@@ -20,13 +20,13 @@
             State = fsm[(int)State, (int)newEvent];
         }
     }
-    enum FileStates
+    public enum FileStates
     {
         NoFile,
         FileNoChanges,
         ChangedFile
     }
-    enum FileEvents
+    public enum FileEvents
     {
         FileOpened,
         FileChanged,

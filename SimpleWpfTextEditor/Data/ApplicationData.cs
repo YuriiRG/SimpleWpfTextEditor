@@ -147,20 +147,34 @@ namespace SimpleWpfTextEditor.Data
             }
         }
 
-        private string windowTitle = "No file opened";
+        private FileStateFSM fileStateMachine = new();
+
+        public FileStates CurrentFileState
+        {
+            get
+            {
+                return fileStateMachine.State;
+            }
+        }
+
+        public void EventHappened(FileEvents newEvent)
+        {
+            fileStateMachine.EventHappened(newEvent);
+            OnPropertyChanged("WindowTitle");
+            OnPropertyChanged("CurrentFileState");
+        }
+
         public string WindowTitle
         {
             get
             {
-                return windowTitle;
-            }
-            set
-            {
-                if (windowTitle != value)
+                return CurrentFileState switch
                 {
-                    windowTitle = value;
-                    OnPropertyChanged();
-                }
+                    FileStates.NoFile        => Properties.Resources.WindowTitleNoFile,
+                    FileStates.FileNoChanges => CurrentFilePath,
+                    FileStates.ChangedFile   => CurrentFilePath + "*",
+                    _                        => Properties.Resources.WindowTitleNoFile,
+                };
             }
         }
 
