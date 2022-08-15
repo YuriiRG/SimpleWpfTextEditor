@@ -76,10 +76,8 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        private void IsAnyFileOpened(object sender, CanExecuteRoutedEventArgs e)
-        {
+        private void IsAnyFileOpened(object sender, CanExecuteRoutedEventArgs e) =>
             e.CanExecute = (Data.CurrentFileState != FileStates.NoFile);
-        }
 
         private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -87,11 +85,8 @@ namespace SimpleWpfTextEditor
             Data.UpdateCounters();
         }
 
-        private void OpenChangeFontDialog(object sender, ExecutedRoutedEventArgs e)
-        {
-            FontDialog dialog = new(Data);
-            dialog.Show();
-        }
+        private void OpenChangeFontDialog(object sender, ExecutedRoutedEventArgs e) =>
+            new FontDialog(Data).Show();
 
         private void ChangeFontSizeWithMouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -135,10 +130,7 @@ namespace SimpleWpfTextEditor
             return true;
         }
 
-        private void QuitApp(object sender, ExecutedRoutedEventArgs e)
-        {
-            Close();
-        }
+        private void QuitApp(object sender, ExecutedRoutedEventArgs e) => Close();
 
         private void OpenRecentFile(object sender, ExecutedRoutedEventArgs e)
         {
@@ -162,16 +154,12 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        private void ClearRecentFiles(object sender, ExecutedRoutedEventArgs e)
-        {
+        private void ClearRecentFiles(object sender, ExecutedRoutedEventArgs e) =>
             Data.RecentFilesClear();
-        }
 
-        private void OpenSearchDialog(object sender, ExecutedRoutedEventArgs e)
-        {
-            SearchDialog dialog = new(SelectText, Data);
-            dialog.Show();
-        }
+        private void OpenSearchDialog(object sender, ExecutedRoutedEventArgs e) =>
+            new SearchDialog(SelectText, Data).Show();
+
         private void SelectText(int position, int length)
         {
             try
@@ -188,20 +176,14 @@ namespace SimpleWpfTextEditor
             }
         }
 
-        private void MainTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
+        private void MainTextBox_LostFocus(object sender, RoutedEventArgs e) =>
             e.Handled = true;
-        }
 
-        private void Window_Activated(object sender, System.EventArgs e)
-        {
+        private void Window_Activated(object sender, System.EventArgs e) =>
             MainTextBox.Focus();
-        }
 
-        private void Window_Deactivated(object sender, System.EventArgs e)
-        {
+        private void Window_Deactivated(object sender, System.EventArgs e) =>
             MenuItemFile.Focus();
-        }
 
         private void ChangeLanguage(object sender, RoutedEventArgs e)
         {
