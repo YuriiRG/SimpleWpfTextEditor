@@ -16,7 +16,7 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string PlainTextFilterString = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*";
+        
         private readonly ApplicationData Data = new();
         public MainWindow()
         {
@@ -35,44 +35,14 @@ namespace SimpleWpfTextEditor
             ((MenuItem)MenuItemLangs.Items[Data.GetLocaleIndex()]).IsChecked = true;
         }
 
-        private void OpenFile(object sender, ExecutedRoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new()
-            {
-                Filter = PlainTextFilterString
-            };
+        private void OpenFile(object sender, ExecutedRoutedEventArgs e) =>
+            FileService.OpenFile(Data);
 
-            if (openFileDialog.ShowDialog() == true)
-            {
-                if (!UnsavedFileMessage())
-                {
-                    return;
-                }
-                Data.CurrentFilePath = openFileDialog.FileName;
-                Data.Text = File.ReadAllText(Data.CurrentFilePath);
-                Data.EventHappened(FileEvents.FileOpened);
-            }
-        }
+        private void SaveFile(object sender, ExecutedRoutedEventArgs e) =>
+            FileService.SaveFile(Data);
 
-        private void SaveFile(object sender, ExecutedRoutedEventArgs e)
-        {
-            Data.EventHappened(FileEvents.FileSaved);
-            Data.Text = Data.Text.Replace("\r\n", Data.NewLine);
-            File.WriteAllText(Data.CurrentFilePath, Data.Text);
-        }
-
-        private void SaveFileAs(object sender, ExecutedRoutedEventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new()
-            {
-                Filter = PlainTextFilterString
-            };
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                Data.CurrentFilePath = saveFileDialog.FileName;
-                SaveFile(null!, null!);
-            }
-        }
+        private void SaveFileAs(object sender, ExecutedRoutedEventArgs e) =>
+            FileService.SaveFileAs(Data);
 
         private void IsAnyFileOpened(object sender, CanExecuteRoutedEventArgs e) =>
             e.CanExecute = (Data.CurrentFileState != FileStates.NoFile);
@@ -100,32 +70,12 @@ namespace SimpleWpfTextEditor
 
         private void ReloadCurrentFile(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!UnsavedFileMessage())
+            if (!FileService.UnsavedFileMessage(Data))
             {
                 return;
             }
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
             Data.EventHappened(FileEvents.FileOpened);
-        }
-
-        private bool UnsavedFileMessage()
-        {
-            if (Data.CurrentFileState == FileStates.ChangedFile)
-            {
-                string unsavedFileMessage = Properties.Resources.UnsavedChanges;
-                var result = MessageBox.Show(unsavedFileMessage,
-                                             "Confirmation",
-                                             MessageBoxButton.YesNo,
-                                             MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
-                {
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         private void QuitApp(object sender, ExecutedRoutedEventArgs e) => Close();
@@ -136,6 +86,7 @@ namespace SimpleWpfTextEditor
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
             Data.EventHappened(FileEvents.FileOpened);
         }
+
         private void ClearRecentFiles(object sender, ExecutedRoutedEventArgs e) =>
             Data.RecentFilesClear();
 
@@ -174,7 +125,7 @@ namespace SimpleWpfTextEditor
                 UpdateLanguageMenuItems();
                 return;
             }
-            if (!UnsavedFileMessage())
+            if (!FileService.UnsavedFileMessage(Data))
             {
                 UpdateLanguageMenuItems();
                 return;
