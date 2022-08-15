@@ -51,7 +51,6 @@ namespace SimpleWpfTextEditor
                 Data.CurrentFilePath = openFileDialog.FileName;
                 Data.Text = File.ReadAllText(Data.CurrentFilePath);
                 Data.EventHappened(FileEvents.FileOpened);
-                AddToRecentFiles(Data.CurrentFilePath);
             }
         }
 
@@ -136,22 +135,7 @@ namespace SimpleWpfTextEditor
             Data.CurrentFilePath = (string)e.Parameter;
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
             Data.EventHappened(FileEvents.FileOpened);
-            AddToRecentFiles(Data.CurrentFilePath);
         }
-
-        private void AddToRecentFiles(string newFilePath)
-        {
-            if (Data.RecentFiles.Contains(newFilePath))
-            {
-                Data.RecentFilesRemoveAt(Data.RecentFiles.IndexOf(newFilePath));
-            }
-            Data.RecentFilesInsert(0, newFilePath);
-            if (Data.RecentFiles.Count > 10)
-            {
-                Data.RecentFilesRemoveAt(Data.RecentFiles.Count - 1);
-            }
-        }
-
         private void ClearRecentFiles(object sender, ExecutedRoutedEventArgs e) =>
             Data.RecentFilesClear();
 

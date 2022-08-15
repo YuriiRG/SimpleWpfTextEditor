@@ -170,6 +170,20 @@ namespace SimpleWpfTextEditor.Data
             if (newEvent == FileEvents.FileOpened)
             {
                 UpdateNewLine();
+                AddToRecentFiles(CurrentFilePath);
+            }
+        }
+
+        private void AddToRecentFiles(string newFilePath)
+        {
+            if (RecentFiles.Contains(newFilePath))
+            {
+                RecentFilesRemoveAt(RecentFiles.IndexOf(newFilePath));
+            }
+            RecentFilesInsert(0, newFilePath);
+            if (RecentFiles.Count > 10)
+            {
+                RecentFilesRemoveAt(RecentFiles.Count - 1);
             }
         }
 
