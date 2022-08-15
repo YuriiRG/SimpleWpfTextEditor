@@ -49,10 +49,9 @@ namespace SimpleWpfTextEditor
                     return;
                 }
                 Data.CurrentFilePath = openFileDialog.FileName;
-                Data.Text = File.ReadAllText(openFileDialog.FileName);
+                Data.Text = File.ReadAllText(Data.CurrentFilePath);
                 Data.EventHappened(FileEvents.FileOpened);
                 AddToRecentFiles(Data.CurrentFilePath);
-                UpdateNewLine();
             }
         }
 
@@ -106,8 +105,8 @@ namespace SimpleWpfTextEditor
             {
                 return;
             }
-            Data.EventHappened(FileEvents.FileOpened);
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
+            Data.EventHappened(FileEvents.FileOpened);
         }
 
         private bool UnsavedFileMessage()
@@ -137,7 +136,6 @@ namespace SimpleWpfTextEditor
             Data.CurrentFilePath = (string)e.Parameter;
             Data.Text = File.ReadAllText(Data.CurrentFilePath);
             Data.EventHappened(FileEvents.FileOpened);
-            UpdateNewLine();
             AddToRecentFiles(Data.CurrentFilePath);
         }
 
@@ -221,25 +219,6 @@ namespace SimpleWpfTextEditor
 
             new MainWindow().Show();
             Close();
-        }
-
-        private void UpdateNewLine()
-        {
-            if (Data.Text.Contains("\n"))
-            {
-                if (Data.Text.Contains("\r\n"))
-                {
-                    Data.NewLine = "\r\n";
-                }
-                else
-                {
-                    Data.NewLine = "\n";
-                }
-            }
-            else
-            {
-                Data.NewLine = "\r\n";
-            }
         }
 
         private void ResetSettings(object sender, ExecutedRoutedEventArgs e)

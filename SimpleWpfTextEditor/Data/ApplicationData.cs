@@ -162,6 +162,10 @@ namespace SimpleWpfTextEditor.Data
             fileStateMachine.EventHappened(newEvent);
             OnPropertyChanged("WindowTitle");
             OnPropertyChanged("CurrentFileState");
+            if (newEvent == FileEvents.FileOpened)
+            {
+                UpdateNewLine();
+            }
         }
 
         public string WindowTitle
@@ -202,6 +206,25 @@ namespace SimpleWpfTextEditor.Data
             }
         }
 
+        private void UpdateNewLine()
+        {
+            if (Text.Contains("\n"))
+            {
+                if (Text.Contains("\r\n"))
+                {
+                    NewLine = "\r\n";
+                }
+                else
+                {
+                    NewLine = "\n";
+                }
+            }
+            else
+            {
+                NewLine = "\r\n";
+            }
+        }
+
         private string newLine = "\r\n";
         public string NewLine
         {
@@ -209,7 +232,7 @@ namespace SimpleWpfTextEditor.Data
             {
                 return newLine;
             }
-            set
+            private set
             {
                 if (newLine != value)
                 {
