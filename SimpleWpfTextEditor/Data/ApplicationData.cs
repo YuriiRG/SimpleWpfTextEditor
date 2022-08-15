@@ -5,6 +5,11 @@ using System.Runtime.CompilerServices;
 
 namespace SimpleWpfTextEditor.Data
 {
+    /// <summary>
+    /// Application ViewModel. Contains all logic (computed properties) related to data.
+    /// This class is MainWindow's DataContext.
+    /// Also, it encapsulates saving settings with AppSettings and SettingsWriter.
+    /// </summary>
     public class ApplicationData : INotifyPropertyChanged
     {
         private AppSettings settings = SettingsWriter.Read();
