@@ -59,7 +59,7 @@ namespace SimpleWpfTextEditor
             {
                 string unsavedFileMessage = Properties.Resources.UnsavedChanges;
                 var result = MessageBox.Show(unsavedFileMessage,
-                                             "Confirmation",
+                                             Properties.Resources.Confirmation,
                                              MessageBoxButton.YesNo,
                                              MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)

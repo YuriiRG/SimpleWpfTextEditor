@@ -97,7 +97,7 @@ namespace SimpleWpfTextEditor
             catch
             {
                 MessageBox.Show(Properties.Resources.NoOccurrences,
-                                    "Notification",
+                                    Properties.Resources.Notification,
                                     MessageBoxButton.OK);
                 return;
             }
@@ -153,7 +153,7 @@ namespace SimpleWpfTextEditor
         private void ResetSettings(object sender, ExecutedRoutedEventArgs e)
         {
             var result = MessageBox.Show(Properties.Resources.ResetSettingsConfirmation,
-                                         "Confirmation",
+                                         Properties.Resources.Confirmation,
                                          MessageBoxButton.YesNo,
                                          MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
