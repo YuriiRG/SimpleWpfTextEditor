@@ -148,6 +148,8 @@ namespace SimpleWpfTextEditor.Data
                 {
                     text = value;
                     OnPropertyChanged();
+                    UpdateCounters();
+                    EventHappened(FileEvents.FileChanged);
                 }
             }
         }

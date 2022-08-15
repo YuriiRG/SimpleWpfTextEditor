@@ -136,7 +136,6 @@
                  AcceptsReturn="True"
                  AcceptsTab="True"
                  HorizontalScrollBarVisibility="Visible"
-                 TextChanged="MainTextBox_TextChanged"
                  FontSize="{Binding FontSize}"
                  FontFamily="{Binding FontFamily}"
                  VerticalScrollBarVisibility="Visible"

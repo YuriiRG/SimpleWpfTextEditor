@@ -47,12 +47,6 @@ namespace SimpleWpfTextEditor
         private void IsAnyFileOpened(object sender, CanExecuteRoutedEventArgs e) =>
             e.CanExecute = (Data.CurrentFileState != FileStates.NoFile);
 
-        private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Data.EventHappened(FileEvents.FileChanged);
-            Data.UpdateCounters();
-        }
-
         private void OpenChangeFontDialog(object sender, ExecutedRoutedEventArgs e) =>
             new FontDialog(Data).Show();
 
