@@ -41,8 +41,8 @@ namespace SimpleWpfTextEditor
         public static void SaveFile(ApplicationData data)
         {
             data.EventHappened(FileEvents.FileSaved);
-            data.Text = data.Text.Replace("\r\n", data.NewLine);
-            File.WriteAllText(data.CurrentFilePath, data.Text);
+            string correctText = data.Text.Replace("\r\n", data.NewLine);
+            File.WriteAllText(data.CurrentFilePath, correctText);
         }
 
         public static void SaveFileAs(ApplicationData data)
