@@ -10,7 +10,7 @@ namespace SimpleWpfTextEditor.Data
     /// This class is MainWindow's DataContext.
     /// Also, it encapsulates saving settings with AppSettings and SettingsWriter.
     /// </summary>
-    public class ApplicationData : INotifyPropertyChanged
+    public class ApplicationData : IApplicationData, INotifyPropertyChanged
     {
         private AppSettings settings = SettingsWriter.Read();
 
@@ -263,7 +263,7 @@ namespace SimpleWpfTextEditor.Data
             }
         }
 
-        public void UpdateCounters()
+        private void UpdateCounters()
         {
             OnPropertyChanged("CharactersNumber");
             OnPropertyChanged("LinesNumber");
