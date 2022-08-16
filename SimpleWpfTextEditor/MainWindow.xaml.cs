@@ -64,12 +64,7 @@ namespace SimpleWpfTextEditor
 
         private void ReloadCurrentFile(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!FileService.UnsavedFileMessage(Data))
-            {
-                return;
-            }
-            Data.Text = File.ReadAllText(Data.CurrentFilePath);
-            Data.EventHappened(FileEvents.FileOpened);
+            FileService.ReloadCurrentFile(Data);
         }
 
         private void QuitApp(object sender, ExecutedRoutedEventArgs e) => Close();

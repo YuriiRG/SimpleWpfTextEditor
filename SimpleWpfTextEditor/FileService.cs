@@ -33,6 +33,16 @@ namespace SimpleWpfTextEditor
             }
         }
 
+        public static void ReloadCurrentFile(ApplicationData data)
+        {
+            if (!FileService.UnsavedFileMessage(data))
+            {
+                return;
+            }
+            data.Text = File.ReadAllText(data.CurrentFilePath);
+            data.EventHappened(FileEvents.FileOpened);
+        }
+
         public static void SaveFile(ApplicationData data)
         {
             data.EventHappened(FileEvents.FileSaved);
