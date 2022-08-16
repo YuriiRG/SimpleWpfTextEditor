@@ -6,7 +6,7 @@ using System.Windows.Media;
 namespace SimpleWpfTextEditor
 {
     /// <summary>
-    /// Логика взаимодействия для FontDialog.xaml
+    /// Interaction logic for FontDialog.xaml
     /// </summary>
     public partial class FontDialog : Window
     {
