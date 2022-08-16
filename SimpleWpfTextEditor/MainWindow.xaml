@@ -12,7 +12,7 @@
         Activated="Window_Activated"
         Deactivated="Window_Deactivated">
     <Window.Resources>
-        <h:BoolWarpEnumConverter x:Key="boolWarpEnumConverter"/>
+        <h:BoolWrapEnumConverter x:Key="boolWarpEnumConverter"/>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open"

@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace SimpleWpfTextEditor.Helpers
 {
-    public class BoolWarpEnumConverter : IValueConverter
+    public class BoolWrapEnumConverter : IValueConverter
     {
         public object Convert(object value,
                               Type targetType,
