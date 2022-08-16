@@ -1,8 +1,4 @@
-﻿using Microsoft.Win32;
-using SimpleWpfTextEditor.Data;
-using System;
-using System.Diagnostics;
-using System.Globalization;
+﻿using SimpleWpfTextEditor.Data;
 using System.IO;
 using System.Threading;
 using System.Windows;
