@@ -67,9 +67,7 @@ namespace SimpleWpfTextEditor
 
         private void OpenRecentFile(object sender, ExecutedRoutedEventArgs e)
         {
-            Data.CurrentFilePath = (string)e.Parameter;
-            Data.Text = File.ReadAllText(Data.CurrentFilePath);
-            Data.EventHappened(FileEvents.FileOpened);
+            FileService.OpenRecentFile(Data, (string)e.Parameter);
         }
 
         private void ClearRecentFiles(object sender, ExecutedRoutedEventArgs e) =>

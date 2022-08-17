@@ -78,5 +78,12 @@ namespace SimpleWpfTextEditor
             }
             return true;
         }
+
+        public static void OpenRecentFile(ApplicationData data, string RecentFilePath)
+        {
+            data.CurrentFilePath = RecentFilePath;
+            data.Text = File.ReadAllText(data.CurrentFilePath);
+            data.EventHappened(FileEvents.FileOpened);
+        }
     }
 }
