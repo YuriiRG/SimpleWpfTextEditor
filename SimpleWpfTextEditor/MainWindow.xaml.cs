@@ -149,7 +149,7 @@ namespace SimpleWpfTextEditor
                                          MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                File.Delete(SettingsWriter.SettingsPath);
+                SettingsWriter.Reset();
                 new MainWindow().Show();
                 Close();
             }

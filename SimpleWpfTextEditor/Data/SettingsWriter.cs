@@ -6,7 +6,7 @@ namespace SimpleWpfTextEditor.Data
 {
     public static class SettingsWriter
     {
-        public static readonly string SettingsPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
+        private static readonly string SettingsPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
         public static AppSettings Read()
         {
             if (File.Exists(SettingsPath))
@@ -34,6 +34,10 @@ namespace SimpleWpfTextEditor.Data
                 string json = JsonSerializer.Serialize(data);
                 File.WriteAllText(SettingsPath, json);
             }
+        }
+        public static void Reset()
+        {
+            File.Delete(SettingsPath);
         }
     }
 }
