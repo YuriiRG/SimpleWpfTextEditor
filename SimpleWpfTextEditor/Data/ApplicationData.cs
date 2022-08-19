@@ -12,7 +12,19 @@ namespace SimpleWpfTextEditor.Data
     /// </summary>
     public class ApplicationData : IApplicationData, INotifyPropertyChanged
     {
-        private AppSettings settings = SettingsWriter.Read();
+        private readonly ISettingsWriter settingsWriter;
+        public ApplicationData(ISettingsWriter writer)
+        {
+            settingsWriter = writer;
+            settings = settingsWriter.Read();
+        } 
+
+        private AppSettings settings;
+
+        public void ResetSettings()
+        {
+            settingsWriter.Reset();
+        }
 
         public ObservableCollection<string> RecentFiles
         {
@@ -27,7 +39,7 @@ namespace SimpleWpfTextEditor.Data
                     settings.RecentFiles = value;
                     OnPropertyChanged();
                     OnPropertyChanged("IsRecentFilesNotEmpty");
-                    SettingsWriter.Save(settings);
+                    settingsWriter.Save(settings);
                 }
             }
         }
@@ -37,7 +49,7 @@ namespace SimpleWpfTextEditor.Data
             RecentFiles.Insert(index, newRecentFile);
             OnPropertyChanged("RecentFiles");
             OnPropertyChanged("IsRecentFilesNotEmpty");
-            SettingsWriter.Save(settings);
+            settingsWriter.Save(settings);
         }
 
         public int GetLocaleIndex()
@@ -55,7 +67,7 @@ namespace SimpleWpfTextEditor.Data
             RecentFiles.RemoveAt(index);
             OnPropertyChanged("RecentFiles");
             OnPropertyChanged("IsRecentFilesNotEmpty");
-            SettingsWriter.Save(settings);
+            settingsWriter.Save(settings);
         }
 
         public void RecentFilesClear()
@@ -63,7 +75,7 @@ namespace SimpleWpfTextEditor.Data
             RecentFiles.Clear();
             OnPropertyChanged("RecentFiles");
             OnPropertyChanged("IsRecentFilesNotEmpty");
-            SettingsWriter.Save(settings);
+            settingsWriter.Save(settings);
         }
 
         public string FontFamily
@@ -78,7 +90,7 @@ namespace SimpleWpfTextEditor.Data
                 {
                     settings.FontFamily = value;
                     OnPropertyChanged();
-                    SettingsWriter.Save(settings);
+                    settingsWriter.Save(settings);
                 }
             }
         }
@@ -95,7 +107,7 @@ namespace SimpleWpfTextEditor.Data
                 {
                     settings.FontSize = value;
                     OnPropertyChanged();
-                    SettingsWriter.Save(settings);
+                    settingsWriter.Save(settings);
                 }
             }
         }
@@ -112,7 +124,7 @@ namespace SimpleWpfTextEditor.Data
                 {
                     settings.WrapText = value;
                     OnPropertyChanged();
-                    SettingsWriter.Save(settings);
+                    settingsWriter.Save(settings);
                 }
             }
         }
@@ -128,7 +140,7 @@ namespace SimpleWpfTextEditor.Data
                 if (value != settings.Locale)
                 {
                     settings.Locale = value;
-                    SettingsWriter.Save(settings);
+                    settingsWriter.Save(settings);
                 }
             }
         }

@@ -4,10 +4,10 @@ using System.Text.Json;
 
 namespace SimpleWpfTextEditor.Data
 {
-    public static class SettingsWriter
+    public class SettingsWriter : ISettingsWriter
     {
-        private static readonly string SettingsPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
-        public static AppSettings Read()
+        private readonly string SettingsPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
+        public AppSettings Read()
         {
             if (File.Exists(SettingsPath))
             {
@@ -19,7 +19,7 @@ namespace SimpleWpfTextEditor.Data
                 return new AppSettings();
             }
         }
-        public static void Save(AppSettings? data)
+        public void Save(AppSettings data)
         {
             if (File.Exists(SettingsPath))
             {
@@ -35,7 +35,7 @@ namespace SimpleWpfTextEditor.Data
                 File.WriteAllText(SettingsPath, json);
             }
         }
-        public static void Reset()
+        public void Reset()
         {
             File.Delete(SettingsPath);
         }

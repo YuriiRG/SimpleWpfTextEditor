@@ -13,7 +13,7 @@ namespace SimpleWpfTextEditor
     public partial class MainWindow : Window
     {
         
-        private readonly ApplicationData Data = new();
+        private readonly ApplicationData Data = new(new SettingsWriter());
         public MainWindow()
         {
             Thread.CurrentThread.CurrentUICulture = new(Data.Locale);
@@ -147,7 +147,7 @@ namespace SimpleWpfTextEditor
                                          MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                SettingsWriter.Reset();
+                Data.ResetSettings();
                 new MainWindow().Show();
                 Close();
             }
