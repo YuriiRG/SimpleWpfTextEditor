@@ -5,6 +5,7 @@ namespace TextEditorTests
     [TestClass]
     public class SettingsWriterTests
     {
+        SettingsWriter writer = new SettingsWriter();
         [TestMethod]
         public void WriteReadSettings()
         {
@@ -22,8 +23,8 @@ namespace TextEditorTests
                 Locale = "ru-RU"
             };
 
-            SettingsWriter.Save(sampleSettings);
-            var actualSettings = SettingsWriter.Read();
+            writer.Save(sampleSettings);
+            var actualSettings = writer.Read();
 
             Assert.IsTrue(Enumerable.SequenceEqual(sampleSettings.RecentFiles, actualSettings.RecentFiles));
             Assert.AreEqual(sampleSettings.FontFamily, actualSettings.FontFamily);
