@@ -10,7 +10,7 @@
         private readonly FileStates[,] fsm = new FileStates[3, 3]
         {
             // FileOpened,             FileChanged             FileSaved  
-            {FileStates.FileNoChanges, FileStates.NoFile,      FileStates.NoFile},        // NoFile
+            {FileStates.FileNoChanges, FileStates.NoFile,      FileStates.FileNoChanges}, // NoFile
             {FileStates.FileNoChanges, FileStates.ChangedFile, FileStates.FileNoChanges}, // FileNoChanges
             {FileStates.FileNoChanges, FileStates.ChangedFile, FileStates.FileNoChanges}  // ChangedFile
         };
