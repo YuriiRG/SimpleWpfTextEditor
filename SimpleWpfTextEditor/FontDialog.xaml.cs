@@ -10,8 +10,8 @@ namespace SimpleWpfTextEditor
     /// </summary>
     public partial class FontDialog : Window
     {
-        private ApplicationData Data;
-        public FontDialog(ApplicationData data)
+        private AppViewModel Data;
+        public FontDialog(AppViewModel data)
         {
             Data = data;
             InitializeComponent();

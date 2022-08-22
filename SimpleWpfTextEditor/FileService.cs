@@ -9,7 +9,7 @@ namespace SimpleWpfTextEditor
     {
         private const string PlainTextFilterString = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*";
 
-        public static void OpenFile(ApplicationData data)
+        public static void OpenFile(AppViewModel viewModel)
         {
             OpenFileDialog openFileDialog = new()
             {
@@ -18,34 +18,34 @@ namespace SimpleWpfTextEditor
 
             if (openFileDialog.ShowDialog() == true)
             {
-                if (!UnsavedFileMessage(data))
+                if (!UnsavedFileMessage(viewModel))
                 {
                     return;
                 }
-                data.CurrentFilePath = openFileDialog.FileName;
-                data.Text = File.ReadAllText(data.CurrentFilePath);
-                data.EventHappened(FileEvents.FileOpened);
+                viewModel.CurrentFilePath = openFileDialog.FileName;
+                viewModel.Text = File.ReadAllText(viewModel.CurrentFilePath);
+                viewModel.EventHappened(FileEvents.FileOpened);
             }
         }
 
-        public static void ReloadCurrentFile(ApplicationData data)
+        public static void ReloadCurrentFile(AppViewModel viewModel)
         {
-            if (!FileService.UnsavedFileMessage(data))
+            if (!FileService.UnsavedFileMessage(viewModel))
             {
                 return;
             }
-            data.Text = File.ReadAllText(data.CurrentFilePath);
-            data.EventHappened(FileEvents.FileOpened);
+            viewModel.Text = File.ReadAllText(viewModel.CurrentFilePath);
+            viewModel.EventHappened(FileEvents.FileOpened);
         }
 
-        public static void SaveFile(ApplicationData data)
+        public static void SaveFile(AppViewModel viewModel)
         {
-            data.EventHappened(FileEvents.FileSaved);
-            string correctText = data.Text.Replace("\r\n", data.NewLine);
-            File.WriteAllText(data.CurrentFilePath, correctText);
+            viewModel.EventHappened(FileEvents.FileSaved);
+            string correctText = viewModel.Text.Replace("\r\n", viewModel.NewLine);
+            File.WriteAllText(viewModel.CurrentFilePath, correctText);
         }
 
-        public static void SaveFileAs(ApplicationData data)
+        public static void SaveFileAs(AppViewModel viewModel)
         {
             SaveFileDialog saveFileDialog = new()
             {
@@ -53,14 +53,14 @@ namespace SimpleWpfTextEditor
             };
             if (saveFileDialog.ShowDialog() == true)
             {
-                data.CurrentFilePath = saveFileDialog.FileName;
-                SaveFile(data);
+                viewModel.CurrentFilePath = saveFileDialog.FileName;
+                SaveFile(viewModel);
             }
         }
 
-        public static bool UnsavedFileMessage(ApplicationData data)
+        public static bool UnsavedFileMessage(AppViewModel viewModel)
         {
-            if (data.CurrentFileState == FileStates.ChangedFile)
+            if (viewModel.CurrentFileState == FileStates.ChangedFile)
             {
                 string unsavedFileMessage = Properties.Resources.UnsavedChanges;
                 var result = MessageBox.Show(unsavedFileMessage,
@@ -79,11 +79,11 @@ namespace SimpleWpfTextEditor
             return true;
         }
 
-        public static void OpenRecentFile(ApplicationData data, string RecentFilePath)
+        public static void OpenRecentFile(AppViewModel viewModel, string RecentFilePath)
         {
-            data.CurrentFilePath = RecentFilePath;
-            data.Text = File.ReadAllText(data.CurrentFilePath);
-            data.EventHappened(FileEvents.FileOpened);
+            viewModel.CurrentFilePath = RecentFilePath;
+            viewModel.Text = File.ReadAllText(viewModel.CurrentFilePath);
+            viewModel.EventHappened(FileEvents.FileOpened);
         }
     }
 }

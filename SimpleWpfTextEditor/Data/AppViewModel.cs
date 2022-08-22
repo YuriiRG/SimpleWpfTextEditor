@@ -11,10 +11,10 @@ namespace SimpleWpfTextEditor.Data
     /// This class is MainWindow's DataContext.
     /// Also, it encapsulates saving settings with AppSettings and SettingsWriter.
     /// </summary>
-    public class ApplicationData : ObservableObject, IApplicationData
+    public class AppViewModel : ObservableObject, IAppViewModel
     {
         private readonly ISettingsWriter settingsWriter;
-        public ApplicationData(ISettingsWriter writer)
+        public AppViewModel(ISettingsWriter writer)
         {
             settingsWriter = writer;
             settings = settingsWriter.Read();

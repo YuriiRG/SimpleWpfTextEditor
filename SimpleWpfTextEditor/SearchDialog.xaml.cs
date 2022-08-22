@@ -12,8 +12,8 @@ namespace SimpleWpfTextEditor
     {
         private SelectTextDelegate SelectTextFunction;
         private int cursorPosition = 0;
-        private ApplicationData Data;
-        public SearchDialog(SelectTextDelegate selectText, ApplicationData data)
+        private AppViewModel Data;
+        public SearchDialog(SelectTextDelegate selectText, AppViewModel data)
         {
             SelectTextFunction = selectText;
             Data = data;

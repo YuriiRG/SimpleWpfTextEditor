@@ -13,12 +13,12 @@ namespace SimpleWpfTextEditor
     public partial class MainWindow : Window
     {
         
-        private readonly ApplicationData Data = new(new SettingsWriter());
+        private readonly AppViewModel viewModel = new(new SettingsWriter());
         public MainWindow()
         {
-            Thread.CurrentThread.CurrentUICulture = new(Data.Locale);
+            Thread.CurrentThread.CurrentUICulture = new(viewModel.Locale);
             InitializeComponent();
-            DataContext = Data;
+            DataContext = viewModel;
             UpdateLanguageMenuItems();
         }
 
@@ -28,23 +28,23 @@ namespace SimpleWpfTextEditor
             {
                 ((MenuItem)langOption).IsChecked = false;
             }
-            ((MenuItem)MenuItemLangs.Items[Data.GetLocaleIndex()]).IsChecked = true;
+            ((MenuItem)MenuItemLangs.Items[viewModel.GetLocaleIndex()]).IsChecked = true;
         }
 
         private void OpenFile(object sender, ExecutedRoutedEventArgs e) =>
-            FileService.OpenFile(Data);
+            FileService.OpenFile(viewModel);
 
         private void SaveFile(object sender, ExecutedRoutedEventArgs e) =>
-            FileService.SaveFile(Data);
+            FileService.SaveFile(viewModel);
 
         private void SaveFileAs(object sender, ExecutedRoutedEventArgs e) =>
-            FileService.SaveFileAs(Data);
+            FileService.SaveFileAs(viewModel);
 
         private void IsAnyFileOpened(object sender, CanExecuteRoutedEventArgs e) =>
-            e.CanExecute = (Data.CurrentFileState != FileStates.NoFile);
+            e.CanExecute = (viewModel.CurrentFileState != FileStates.NoFile);
 
         private void OpenChangeFontDialog(object sender, ExecutedRoutedEventArgs e) =>
-            new FontDialog(Data).Show();
+            new FontDialog(viewModel).Show();
 
         private void ChangeFontSizeWithMouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -52,29 +52,29 @@ namespace SimpleWpfTextEditor
                 return;
 
             if (e.Delta > 0)
-                Data.FontSize++;
+                viewModel.FontSize++;
 
             else if (e.Delta < 0)
-                Data.FontSize--;
+                viewModel.FontSize--;
         }
 
         private void ReloadCurrentFile(object sender, ExecutedRoutedEventArgs e)
         {
-            FileService.ReloadCurrentFile(Data);
+            FileService.ReloadCurrentFile(viewModel);
         }
 
         private void QuitApp(object sender, ExecutedRoutedEventArgs e) => Close();
 
         private void OpenRecentFile(object sender, ExecutedRoutedEventArgs e)
         {
-            FileService.OpenRecentFile(Data, (string)e.Parameter);
+            FileService.OpenRecentFile(viewModel, (string)e.Parameter);
         }
 
         private void ClearRecentFiles(object sender, ExecutedRoutedEventArgs e) =>
-            Data.RecentFilesClear();
+            viewModel.RecentFilesClear();
 
         private void OpenSearchDialog(object sender, ExecutedRoutedEventArgs e) =>
-            new SearchDialog(SelectText, Data).Show();
+            new SearchDialog(SelectText, viewModel).Show();
 
         private void SelectText(int position, int length)
         {
@@ -103,12 +103,12 @@ namespace SimpleWpfTextEditor
 
         private void ChangeLanguage(object sender, RoutedEventArgs e)
         {
-            if (Data.GetLocaleIndex() == MenuItemLangs.Items.IndexOf(sender))
+            if (viewModel.GetLocaleIndex() == MenuItemLangs.Items.IndexOf(sender))
             {
                 UpdateLanguageMenuItems();
                 return;
             }
-            if (!FileService.UnsavedFileMessage(Data))
+            if (!FileService.UnsavedFileMessage(viewModel))
             {
                 UpdateLanguageMenuItems();
                 return;
@@ -133,7 +133,7 @@ namespace SimpleWpfTextEditor
                     MessageBox.Show(Properties.Resources.GeneralError);
                     return;
             }
-            Data.Locale = locale;
+            viewModel.Locale = locale;
 
             new MainWindow().Show();
             Close();
@@ -147,7 +147,7 @@ namespace SimpleWpfTextEditor
                                          MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                Data.ResetSettings();
+                viewModel.ResetSettings();
                 new MainWindow().Show();
                 Close();
             }

@@ -2,7 +2,7 @@
 
 namespace SimpleWpfTextEditor.Data
 {
-    public interface IApplicationData
+    public interface IAppViewModel
     {
         public ObservableCollection<string> RecentFiles { get; set; }
         
