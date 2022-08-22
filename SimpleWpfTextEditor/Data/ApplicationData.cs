@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -10,7 +11,7 @@ namespace SimpleWpfTextEditor.Data
     /// This class is MainWindow's DataContext.
     /// Also, it encapsulates saving settings with AppSettings and SettingsWriter.
     /// </summary>
-    public class ApplicationData : IApplicationData, INotifyPropertyChanged
+    public class ApplicationData : ObservableObject, IApplicationData
     {
         private readonly ISettingsWriter settingsWriter;
         public ApplicationData(ISettingsWriter writer)
@@ -38,7 +39,7 @@ namespace SimpleWpfTextEditor.Data
                 {
                     settings.RecentFiles = value;
                     OnPropertyChanged();
-                    OnPropertyChanged("IsRecentFilesNotEmpty");
+                    OnPropertyChanged(nameof(IsRecentFilesNotEmpty));
                     settingsWriter.Save(settings);
                 }
             }
@@ -47,8 +48,8 @@ namespace SimpleWpfTextEditor.Data
         public void RecentFilesInsert(int index, string newRecentFile)
         {
             RecentFiles.Insert(index, newRecentFile);
-            OnPropertyChanged("RecentFiles");
-            OnPropertyChanged("IsRecentFilesNotEmpty");
+            OnPropertyChanged(nameof(RecentFiles));
+            OnPropertyChanged(nameof(IsRecentFilesNotEmpty));
             settingsWriter.Save(settings);
         }
 
@@ -65,16 +66,16 @@ namespace SimpleWpfTextEditor.Data
         public void RecentFilesRemoveAt(int index)
         {
             RecentFiles.RemoveAt(index);
-            OnPropertyChanged("RecentFiles");
-            OnPropertyChanged("IsRecentFilesNotEmpty");
+            OnPropertyChanged(nameof(RecentFiles));
+            OnPropertyChanged(nameof(IsRecentFilesNotEmpty));
             settingsWriter.Save(settings);
         }
 
         public void RecentFilesClear()
         {
             RecentFiles.Clear();
-            OnPropertyChanged("RecentFiles");
-            OnPropertyChanged("IsRecentFilesNotEmpty");
+            OnPropertyChanged(nameof(RecentFiles));
+            OnPropertyChanged(nameof(IsRecentFilesNotEmpty));
             settingsWriter.Save(settings);
         }
 
@@ -179,8 +180,8 @@ namespace SimpleWpfTextEditor.Data
         public void EventHappened(FileEvents newEvent)
         {
             fileStateMachine.EventHappened(newEvent);
-            OnPropertyChanged("WindowTitle");
-            OnPropertyChanged("CurrentFileState");
+            OnPropertyChanged(nameof(WindowTitle));
+            OnPropertyChanged(nameof(CurrentFileState));
             if (newEvent == FileEvents.FileOpened)
             {
                 UpdateNewLine();
@@ -277,14 +278,8 @@ namespace SimpleWpfTextEditor.Data
 
         private void UpdateCounters()
         {
-            OnPropertyChanged("CharactersNumber");
-            OnPropertyChanged("LinesNumber");
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            OnPropertyChanged(nameof(CharactersNumber));
+            OnPropertyChanged(nameof(LinesNumber));
         }
     }
 }
