@@ -1,8 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Input;
 
 namespace SimpleWpfTextEditor.Data
 {
@@ -13,14 +16,47 @@ namespace SimpleWpfTextEditor.Data
     /// </summary>
     public class AppViewModel : ObservableObject, IAppViewModel
     {
+        public RelayCommand ChangeFontCommand { get; }
+        public RelayCommand ReloadFileCommand { get; }
+        public RelayCommand QuitCommand { get; }
+        public RelayCommand<object> OpenRecentFileCommand { get; }
+        public RelayCommand ClearRecentFilesCommand { get; }
+        public RelayCommand ResetSettingsCommand { get; }
+
         private readonly ISettingsWriter settingsWriter;
+        private AppSettings settings;
         public AppViewModel(ISettingsWriter writer)
         {
             settingsWriter = writer;
             settings = settingsWriter.Read();
-        } 
 
-        private AppSettings settings;
+            ChangeFontCommand = new(OpenChangeFontDialog);
+            ReloadFileCommand = new(ReloadCurrentFile, IsAnyFileOpened);
+
+            OpenRecentFileCommand = new(OpenRecentFile);
+            ClearRecentFilesCommand = new(RecentFilesClear);
+        }
+
+
+        private void OpenChangeFontDialog() =>
+            new FontDialog(this).Show();
+
+        private void ReloadCurrentFile() =>
+            FileService.ReloadCurrentFile(this);
+
+        private void OpenRecentFile(object? parameter)
+        {
+            ReloadFileCommand.NotifyCanExecuteChanged();
+            FileService.OpenRecentFile(this, (string)parameter!);
+        }
+            
+
+        private bool IsAnyFileOpened()
+        {
+            return (CurrentFileState != FileStates.NoFile);
+        } 
+            
+
 
         public void ResetSettings()
         {

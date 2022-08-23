@@ -4,8 +4,6 @@ namespace SimpleWpfTextEditor.Helpers
 {
     static class CustomCommands
     {
-        public static RoutedCommand ChangeFont { get; set; } =
-            new RoutedCommand("ChangeFont", typeof(MainWindow));
         public static RoutedCommand ReloadFile { get; set; } =
             new RoutedCommand("ReloadFile", typeof(MainWindow));
         public static RoutedCommand Quit { get; set; } =

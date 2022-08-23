@@ -22,17 +22,8 @@
                         CanExecute="IsAnyFileOpened"/>
         <CommandBinding Command="ApplicationCommands.SaveAs"
                         Executed="SaveFileAs"/>
-        <CommandBinding Command="h:CustomCommands.ChangeFont"
-                        Executed="OpenChangeFontDialog"/>
-        <CommandBinding Command="h:CustomCommands.ReloadFile"
-                        Executed="ReloadCurrentFile"
-                        CanExecute="IsAnyFileOpened"/>
         <CommandBinding Command="h:CustomCommands.Quit"
                         Executed="QuitApp"/>
-        <CommandBinding Command="h:CustomCommands.OpenRecentFile"
-                        Executed="OpenRecentFile"/>
-        <CommandBinding Command="h:CustomCommands.ClearRecentFiles"
-                        Executed="ClearRecentFiles"/>
         <CommandBinding Command="ApplicationCommands.Find"
                         Executed="OpenSearchDialog"/>
         <CommandBinding Command="h:CustomCommands.ResetSettings"
@@ -60,7 +51,7 @@
                 <Separator/>
                 <MenuItem Name="MenuItemReloadCurrentFile"
                           Header="{x:Static p:Resources.MenuItemReloadFileHeader}"
-                          Command="h:CustomCommands.ReloadFile"
+                          Command="{Binding ReloadFileCommand}"
                           InputGestureText="F5"/>
                 <Separator/>
                 <MenuItem Header="{x:Static p:Resources.MenuItemRecentFilesHeader}"
@@ -71,7 +62,8 @@
                             <Setter Property="MenuItem.Header"
                                     Value="{Binding}"/>
                             <Setter Property="MenuItem.Command"
-                                    Value="h:CustomCommands.OpenRecentFile"/>
+                                    Value="{Binding DataContext.OpenRecentFileCommand,
+                                            RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
                             <Setter Property="MenuItem.CommandParameter"
                                     Value="{Binding}"/>
                         </Style>
@@ -103,7 +95,7 @@
             <MenuItem Header="{x:Static p:Resources.MenuItemPrefsHeader}" Background="{x:Null}">
                 <MenuItem Name="MenuItemChangeFont"
                           Header="{x:Static p:Resources.MenuItemChangeFontHeader}"
-                          Command="h:CustomCommands.ChangeFont"/>
+                          Command="{Binding ChangeFontCommand}"/>
                 <MenuItem Name="MenuItemWrapText"
                           Header="{x:Static p:Resources.MenuItemTextWrapHeader}"
                           IsCheckable="True"

@@ -43,9 +43,6 @@ namespace SimpleWpfTextEditor
         private void IsAnyFileOpened(object sender, CanExecuteRoutedEventArgs e) =>
             e.CanExecute = (viewModel.CurrentFileState != FileStates.NoFile);
 
-        private void OpenChangeFontDialog(object sender, ExecutedRoutedEventArgs e) =>
-            new FontDialog(viewModel).Show();
-
         private void ChangeFontSizeWithMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (Keyboard.Modifiers != ModifierKeys.Control)
@@ -58,20 +55,9 @@ namespace SimpleWpfTextEditor
                 viewModel.FontSize--;
         }
 
-        private void ReloadCurrentFile(object sender, ExecutedRoutedEventArgs e)
-        {
-            FileService.ReloadCurrentFile(viewModel);
-        }
+        
 
         private void QuitApp(object sender, ExecutedRoutedEventArgs e) => Close();
-
-        private void OpenRecentFile(object sender, ExecutedRoutedEventArgs e)
-        {
-            FileService.OpenRecentFile(viewModel, (string)e.Parameter);
-        }
-
-        private void ClearRecentFiles(object sender, ExecutedRoutedEventArgs e) =>
-            viewModel.RecentFilesClear();
 
         private void OpenSearchDialog(object sender, ExecutedRoutedEventArgs e) =>
             new SearchDialog(SelectText, viewModel).Show();
